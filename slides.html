@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&display=swap');@import url('https://cdn.jsdelivr.net/gh/catppuccin/bento@main/assets/themes/catppuccin_colours.css');/* CSS Reset from https://www.joshwcomeau.com/css/custom-css-reset/ *//* 1. Use a more-intuitive box-sizing model */*, *::before, *::after {  box-sizing: border-box;}/* 2. Remove default margin */* {  margin: 0;}/* 3. Enable keyword animations */@media (prefers-reduced-motion: no-preference) {  html {    interpolate-size: allow-keywords;  }}body {  /* 4. Add accessible line-height */  line-height: 1.5;  /* 5. Improve text rendering */  -webkit-font-smoothing: antialiased;}/* 6. Improve media defaults */img, picture, video, canvas, svg {  display: block;  max-width: 100%;}/* 7. Inherit fonts for form controls */input, button, textarea, select {  font: inherit;}/* 8. Avoid text overflows */p, h1, h2, h3, h4, h5, h6 {  overflow-wrap: break-word;}/* 9. Improve line wrapping */p {  text-wrap: pretty;}h1, h2, h3, h4, h5, h6 {  text-wrap: balance;}/*  10. Create a root stacking context*/#root, #__next {  isolation: isolate;}body {  font-size: 4vmin;  font-family: "Atkinson Hyperlegible Next", sans-serif;  line-height: 1.5;  background-color: var(--mocha-base);  color: var(--mocha-text);  overflow: hidden;  height: 100dvh;  margin: 0;}main {  margin: 0 auto;  max-width: 80rem;}div.slide {  height: 100dvh;  display: flex;  flex-direction: column;  justify-content: start;  border-bottom: 2px solid var(--mocha-surface1);  position: relative;  padding: 1em 0em;}p {  margin-top: 0em;  margin-bottom: 0em;}h1 {  color: var(--mocha-blue);}h2 {  color: var(--mocha-teal);  /* text-decoration: underline; */}div.slidenumber {  position: absolute;  right: 0;  bottom: 1em;  text-align: right;  font-size: .5em;  color: var(--mocha-overlay1);}div.footer {  position: absolute;  left: 0;  bottom: 1em;  font-size: 0.5em;  color: var(--mocha-overlay1);  width: 80%;  box-sizing: border-box;  padding: 0 2rem;    display: flex;  justify-content: space-between;  align-items: center;}pre {  max-width: 100%;  overflow-x: auto;  background-color: var(--mocha-mantle);  padding: 1rem;  border-radius: 0.5rem;}code {  font-size: .9em;  font-family: monospace;  color: var(--mocha-peach);}a {  color: var(--mocha-rosewater);}.banner img {  position: relative;  width: 100vw;  height: 20vh;  left: 50%;  right: 50%;  margin-left: -50vw;  margin-right: -50vw;}
+    </style>
+    <script>
+      const slides = document.getElementsByClassName("slide");
+      var idx = parseInt(location.href.split("#").pop());
+      if (isNaN(idx)) {
+        idx = 0;
+      }
+      function next() {
+        if (idx < slides.length) {
+          idx += 1;
+        }
+        location.href = "#" + idx;
+      }
+      function prev() {
+        if (idx > 1) {
+          idx -= 1;
+        }
+        location.href = "#" + idx;
+      }
+      document.addEventListener(
+        "keydown",
+        e => {
+          if (e.key == "PageDown" || e.key == "ArrowRight") {
+            next();
+          } else if (e.key == "PageUp" || e.key == "ArrowLeft") {
+            prev();
+          }
+        }
+      );
+      // document.addEventListener(
+      //   "wheel",
+      //   e => {
+      //     if (e.deltaY > 0) {
+      //       next();
+      //     } else {
+      //       prev();
+      //     }
+      //   }
+      // );
+      
+      
+    </script>
+    <script src="https://cdn.plot.ly/plotly-3.1.0.min.js">
+    </script>
+  </head>
+  <body>
+    <main>
+      <div id="1" class="slide">
+        <h2>Introduction Video</h2>
+        <h3>University of Aalto</h3>
+        <p>Context:</p>
+        <ul>
+          <li>Text <a href="https://sakurakat.systems">styled like this</a> are links.</li>
+          <li>Acknowledgements at the end of the presentation</li>
+          <li>
+            <p>List of tables, images, and links are in <mark>Appendix</mark> at the end</p>
+            <ul>
+              <li>Slides are available for download at <mark>Slides link</mark></li>
+            </ul>
+          </li>
+        </ul>
+        <section style="margin-top:auto;margin-bottom:2em"><code data-lang="typm"><span style="color: #8b41b1">document</span>.<span style="color: #8b41b1">author</span>: (<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><br><code data-lang="typm"><span style="color: #8b41b1">document</span>.<span style="color: #8b41b1">date</span>: <span style="color: #4b69c6">datetime</span>(year: 2025, month: 12, day: 11)</code></section>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">1</div>
+      </div>
+      <div id="2" class="slide">
+        <h2>Self Introduction</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">2</div>
+      </div>
+      <div id="3" class="slide">
+        <h2>Who am I?</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">3</div>
+      </div>
+      <div id="4" class="slide">
+        <h2>Bevy: Rust</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">4</div>
+      </div>
+      <div id="5" class="slide">
+        <h2>Parrylord: Solo Developer</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">5</div>
+      </div>
+      <div id="6" class="slide">
+        <h2>Parrylord: Theme</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">6</div>
+      </div>
+      <div id="7" class="slide">
+        <h2>Parrylord: Result</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">7</div>
+      </div>
+      <div id="8" class="slide">
+        <h2>Godot</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">8</div>
+      </div>
+      <div id="9" class="slide">
+        <h2>Your Own Size: Artist (+ Tech Artist + Coordinator)</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">9</div>
+      </div>
+      <div id="10" class="slide">
+        <h2>Your Own Size: Theme</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">10</div>
+      </div>
+      <div id="11" class="slide">
+        <h2>Your Own Size: Showcase</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">11</div>
+      </div>
+      <div id="12" class="slide">
+        <h2>Your Own Size: The problem</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">12</div>
+      </div>
+      <div id="13" class="slide">
+        <h2>Your Own Size: Solution</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">13</div>
+      </div>
+      <div id="14" class="slide">
+        <h2>Your Own Size: Result</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">14</div>
+      </div>
+      <div id="15" class="slide">
+        <h2>Coventry University Summer School</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">15</div>
+      </div>
+      <div id="16" class="slide">
+        <h2>Fractured Elements: Lead Developer</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">16</div>
+      </div>
+      <div id="17" class="slide">
+        <h2>Fractured Elements: Theme</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">17</div>
+      </div>
+      <div id="18" class="slide">
+        <h2>Fractured Elements: Result</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">18</div>
+      </div>
+      <div id="19" class="slide">
+        <h2>Coventry University Summer School: Result</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">19</div>
+      </div>
+      <div id="20" class="slide">
+        <h2>Cosmos Conquerors: Solo Developer</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">20</div>
+      </div>
+      <div id="21" class="slide">
+        <h2>Cosmos Conquerors: Theme</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">21</div>
+      </div>
+      <div id="22" class="slide">
+        <h2>Cosmos Conquerors: Result</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">22</div>
+      </div>
+      <div id="23" class="slide">
+        <h2>Krita Palette Creator / Rosetta Code</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">23</div>
+      </div>
+      <div id="24" class="slide">
+        <h2>Why Aalto?</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">24</div>
+      </div>
+      <div id="25" class="slide">
+        <h2>Acknowledgement</h2>
+        <div class="footer">Introduction Video<code data-lang="typc">(<span style="color: #198810">"Herschel Pravin Pawar"</span>,)</code><code data-lang="typc"><span style="color: #4b69c6">datetime</span>(year: <span style="color: #b60157">2025</span>, month: <span style="color: #b60157">12</span>, day: <span style="color: #b60157">11</span>)</code></div>
+        <div class="slidenumber">25</div>
+      </div>
+    </main>
+  </body>
+</html>
