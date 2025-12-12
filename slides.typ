@@ -1,4 +1,7 @@
-#import "lib.typ": *
+#import "utils.typ": *
+
+#import "@preview/touying:0.5.5": *
+#import themes.metropolis: *
 
 #import "@preview/tiaoma:0.3.0": barcode
 #import "@preview/catppuccin:1.0.1": catppuccin, flavors
@@ -8,193 +11,262 @@
 
 #let todo(content) = highlight(content)
 
+#let flavor = flavors.mocha
+#let palette = flavor.colors
+#let themes = palette.pairs().filter(((_, it)) => it.accent).to-dict()
+#let non-accent = palette.pairs().filter(((_, it)) => not it.accent).to-dict()
+#let (mauve, pink, rosewater, lavender, ..) = themes
+#import "@preview/numbly:0.1.0": numbly
+
 #set document(
-title: "Introduction Video",
-author: "Herschel Pravin Pawar", date: datetime.today())
+  title: "Introduction Video",
+  author: "Herschel Pravin Pawar",
+  date: datetime.today(),
+)
 
-#show box.where(width: 1fr): it => context if target == "paged" {it} else { html.elem("span", attrs: (style: (display: "block", width: "100%").pairs().map(it => it.at(0) + ":" + it.at(1)).join(";")), it.body)}
+#let text-color = non-accent.text.rgb
+#let alert-primary-color = pink.rgb
+#let alert-secondary-color = rosewater.rgb
+#let header-background-color = lavender.rgb
+#let slide-background-color = non-accent.base.rgb
+#let focus-background-color = non-accent.crust.rgb
+#let focus-text-color = non-accent.surface0.rgb
 
-#let inline-css(dict) = dict.pairs().map(it => it.at(0) + ":" + it.at(1)).join(";")
+#let primary = alert-primary-color
+#let primary-light = alert-secondary-color
+#let secondary = header-background-color
+#let neutral-lightest = slide-background-color
+#let neutral-dark = focus-background-color
+#let neutral-darkest = text-color
 
-#show: html-slides
-#let slide = slide.with(footer: context if target == "paged" {
-  table(
-  columns: (1fr, 1fr, 1fr),
-  box(width: 1fr, repr(document.title)),
-  box(width: 1fr, repr(document.author)),
-  box(width: 1fr, repr(document.date))
+
+#let creative-font = "SpaceMono Nerd Font Propo"
+
+#show: metropolis-theme.with(
+  aspect-ratio: "16-9",
+  navigation: none,
+  config-info(
+    title: context repr(document.title),
+    subtitle: [
+      University of Aalto\
+      #text(size: 0.8em)[
+        #alert[Context:]
+        - Text #link("https://sakurakat.systems")[decorated like this] are links
+        - Acknowledgements at the end of the presentation
+        - Text using #text(font: creative-font, creative-font) are supposed to be "#text(font: creative-font)[creative]" elements
+        - List of tables, images, and links are in the Appendix at the end
+          - Download the presentation from #github-card("pawarherschel/uniofaalto2025") to view them
+      ]
+    ],
+    author: "Author: " + context document.author,
+    date: "Date: " + context document.date,
+  ),
+  config-colors(
+    primary: primary,
+    primary-light: primary-light,
+    secondary: secondary,
+    neutral-lightest: neutral-lightest,
+    neutral-dark: neutral-dark,
+    neutral-darkest: neutral-darkest,
+  ),
+)
+
+#show heading.where(depth: 1): set heading(numbering: (..n) => "=" * 1)
+#show heading.where(depth: 2): set heading(numbering: (..n) => "=" * 2)
+#show heading.where(depth: 3): set heading(numbering: (..n) => "=" * 3)
+#show heading.where(depth: 4): set heading(numbering: (..n) => "=" * 4)
+
+#show list: set list(marker: [-])
+
+#show link: underline
+#show link: set underline(stroke: (
+  paint: alert-secondary-color,
+  dash: "densely-dashed",
+))
+
+#set table(stroke: text-color)
+#set text(font: "JetBrains Mono")
+
+#set quote(block: true)
+#show quote: set align(center)
+#show quote: set text(font: creative-font)
+#show quote: it => {
+  grid(
+    rows: 3,
+    columns: 3,
+    text(size: 3em, baseline: 0.5em)[“], [], [],
+    [], text(style: "italic")[#it.body], [],
+    [], [], text(size: 3em)[”],
   )
-} else {
-  [#document.title]
-  [#document.author]
-  [#document.date]
-})
+  align(right)[-- #it.attribution]
+}
 
-#slide[
-  = #context document.title
-  == University of Aalto
+#let blank-slide = focus-slide(config: (freeze-slide-counter: false))[
+  #text(
+    font: creative-font,
+    style: "italic",
+    weight: "light",
+    stretch: 70%,
+    size: 39.3pt,
+    fill: focus-text-color,
+  )[
+    #smallcaps[This Page Has Been Intentionally Left Blank]
+  ]
+]
 
-  Context:
-  - Text #link("https://sakurakat.systems")[styled like this] are links.
-  - Acknowledgements at the end of the presentation
-  - List of tables, images, and links are in #todo[Appendix] at the end
-    - Slides are available for download at #todo[Slides link]
-
-  #context if target == "paged" {align(bottom,[
-     #raw(``` document.author: ```.text + repr(document.author)  , lang: "typm")\
-    #raw(``` document.date: ```.text + repr(document.date)  , lang: "typm")
-  ])} else {
-    html.elem("section", attrs: (style: inline-css((margin-top: "auto", margin-bottom: "2em"))), [
-     #raw(``` document.author: ```.text + repr(document.author)  , lang: "typm")\
-    #raw(``` document.date: ```.text + repr(document.date)  , lang: "typm")
-  ])
+#let filepath(file, full-file: none) = {
+  let file = file.codepoints().map(c => [#sym.wj#c]).join()
+  let file-at = "preview file".codepoints().map(c => [#sym.wj#c]).join()
+  let full-file-at = "original file".codepoints().map(c => [#sym.wj#c]).join()
+  let joiner = [~#sym.wj\@#sym.wj~]
+  if full-file == none {
+    text(size: 0.7em)[#linebreak()#full-file-at#joiner#file]
+  } else {
+    text(size: 0.7em)[
+      #linebreak()
+      #file-at#joiner#file
+      #linebreak()
+      #full-file-at#joiner#full-file
+    ]
   }
-]
-#slide[
-  = Self Introduction
-]
-#slide[
-  = Who am I?
-]
-#slide[
-  = Bevy: Rust
-]
-#slide[
-  = Parrylord: Solo Developer
-]
-#slide[
-  = Parrylord: Theme
-]
-#slide[
-  = Parrylord: Result
-]
-#slide[
-  = Godot
-]
-#slide[
-  = Your Own Size: Artist (+ Tech Artist + Coordinator)
-]
-#slide[
-  = Your Own Size: Theme
-]
-#slide[
-  = Your Own Size: Showcase
-]
-#slide[
-  = Your Own Size: The problem
-]
-#slide[
-  = Your Own Size: Solution
-]
-#slide[
-  = Your Own Size: Result
-]
-#slide[
-  = Coventry University Summer School
-]
-#slide[
-  = Fractured Elements: Lead Developer
-]
-#slide[
-  = Fractured Elements: Theme
-]
-#slide[
-  = Fractured Elements: Result
-]
-#slide[
-  = Coventry University Summer School: Result
-]
-#slide[
-  = Cosmos Conquerors: Solo Developer
-]
-#slide[
-  = Cosmos Conquerors: Theme
-]
-#slide[
-  = Cosmos Conquerors: Result
-]
-#slide[
-  = Krita Palette Creator / Rosetta Code
-]
-#slide[
-  = Why Aalto?
-]
-#slide[
-  = Acknowledgement
-]
+}
 
-/*
-#show math.equation: set text(font: "Lete Sans Math")
+#title-slide()
 
-#slide(footer: none)[
-  #title[A Revolutionary Idea in High-Precision Quantum Nano Medicine]
+// = \= Outline <touying:hidden>
 
-  // #banner(image("img/dna.png"))
+// #align(top)[
+//   #outline(title: none)
+// ]
 
-  B. Ullshit
-  ---
-  Oslo, October 2025
-  \
-  #html.span(style: "font-size: smaller")[(view on desktop, use left/right
-    arrows to navigate)]
-]
+// = Self Introduction
 
-#slide[
-  = Theory
+// == Who am I?
 
-  The well known fact
-  // @smith87
-  $
-    integral.surf_Omega(pi)
-    (partial (sum_(i = 1)^n bold(x)_i times.o bold(y)_i)^2) / (partial bold(z))
-    dif bold(omega)
-    =
-    bold(A)(tau)^(upright(sans(T))) bold(xi)
-  $
-  for all $tau > sigma_42$, strongly suggests that our approach leads to
-  relevant improvement.
-  #lorem(20)
-]
+// #grid(
+//   columns: 2,
+//   rows: 1,
+//   align: center,
+//   column-gutter: 2%,
+//   block(height: 1fr)[
+//     // #figure(
+//     //   image(
+//     //     "me.png",
+//     //     alt: "image of Herschel Pravin Pawar",
+//     //     fit: "contain",
+//     //     height: 1fr,
+//     //   ),
+//     //   caption: [Image of me #filepath("me.png")],
+//     // )
+//   ],
+//   align(left + horizon)[
+//     #text(size: 27pt)[
+//       #grid(
+//         rows: 1,
+//         columns: 2,
+//         column-gutter: 2%,
+//         // image("kibty.svg", height: 3em),
+//         align(left + horizon)[
+//           #alert[Herschel Pravin Pawar]
+//           #linebreak()
+//           #text(
+//             font: creative-font,
+//             size: 0.8em,
+//           )[#link("https://sakurakat.systems")[sakurakat.systems] <links>]
+//         ],
+//       )
+//     ]
+//     #align(bottom)[
+//       #text(size: 1em)[
+//         #par(justify: true)[
+//           #text(size: 0.695em)[
+//             Everything you see in this video --- scripts, links, and images --- are a part of a Typst document available freely on GitHub under mit licence.
+//           ]
+//         ]
+//         #grid(
+//           rows: 1,
+//           columns: 2,
+//           align: left + horizon,
+//           column-gutter: 2%,
+//           // image("cc.logo.svg", height: 1em),
+//           // [#link("https://github.com/pawarherschel/UniOfAalto")[GitHub:pawarherschel/UniOfAalto] <links>],
+//         )
+//       ]
+//     ]
+//   ],
+// )
 
-#slide[
-  = Simulation study
 
-  We performed a prior predictive check using a quadrupled Gaussian Monte-Cristo
-  method with inverse-binary semi-symmetry:
-  ```py
-  from study import result
-  print(np.zeros(4, 2).transpose().sum())
-  ```
-]
+= Self Introduction
 
-#slide[
-  = Methods
 
-  #html.video(
-    src: "https://cdn.pixabay.com/video/2024/06/11/216233_large.mp4",
-    controls: true,
-    autoplay: false,
-    loop: true,
-    style: "width: 50vw",
-  )
-]
 
-#slide[
-  = Results
+== Who am I?
 
-  #plotly((
-    x: (1, 2, 3, 4),
-    y: (10, 15, 13, 17),
-    mode: "lines+markers",
-    type: "scatter",
-  ))
 
-  Note the _clear_ upwards trend! #emoji.face.shock
-  (Zoom into the second data point!)
-]
+= Bevy: Rust
 
-#slide[
-  // #bibliography(style: "apa", "bib.yaml")
-]
 
-*/
+= Parrylord: Solo Developer
+
+
+= Parrylord: Theme
+
+
+= Parrylord: Result
+
+
+= Godot
+
+
+= Your Own Size: Artist (+ Tech Artist + Coordinator)
+
+
+= Your Own Size: Theme
+
+
+= Your Own Size: Showcase
+
+
+= Your Own Size: The problem
+
+
+= Your Own Size: Solution
+
+
+= Your Own Size: Result
+
+
+= Coventry University Summer School
+
+
+= Fractured Elements: Lead Developer
+
+
+= Fractured Elements: Theme
+
+
+= Fractured Elements: Result
+
+
+= Coventry University Summer School: Result
+
+
+= Cosmos Conquerors: Solo Developer
+
+
+= Cosmos Conquerors: Theme
+
+
+= Cosmos Conquerors: Result
+
+
+= Krita Palette Creator / Rosetta Code
+
+
+= Why Aalto?
+
+
+= Acknowledgement
+
+

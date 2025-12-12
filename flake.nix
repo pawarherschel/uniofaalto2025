@@ -37,23 +37,25 @@
         commonArgs = {
           typstSource = "slides.typ";
 
-          typstOpts.format = "html";
+          typstOpts.format = "pdf";
           typstOpts.features = [ "html" ];
 
           fontPaths = [
             # Add paths to fonts here
             # "${pkgs.roboto}/share/fonts/truetype"
+            "${pkgs.nerd-fonts.jetbrains-mono}"
+            "${pkgs.nerd-fonts.space-mono}"
           ];
 
           virtualPaths = [
-            {
-              src = ./style.css;
-              dest = "style.css";
-            }
-            {
-              src = ./control.js;
-              dest = "control.js";
-            }
+            # {
+            #   src = ./style.css;
+            #   dest = "style.css";
+            # }
+            # {
+            #   src = ./control.js;
+            #   dest = "control.js";
+            # }
             # Add paths that must be locally accessible to typst here
             # {
             #   dest = "icons";
@@ -121,6 +123,17 @@
             hash = "sha256-dgb+YAYLEKgMMEWa8yelMvRdEoesPj5HI+70w3mCUcQ=";
           }
 
+          {
+            name = "touying";
+            version = "0.5.5";
+            hash = "sha256-H8tdhKH9Fm3/1qTd1QGWNRpS3fq2RU8svDcOd+r0NCE=";
+          }
+
+          {
+            name = "numbly";
+            version = "0.1.0";
+            hash = "sha256-j3kolGf2gAJiXGymYpmtWiOJbtOvjQz8xxVjxKmjDQw=";
+          }
         ];
 
         # Compile a Typst project, *without* copying the result
