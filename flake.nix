@@ -104,7 +104,7 @@
             version = "0.4.3";
             hash = "sha256-Ukx3XnCBRZUu6kQ20EQuQA7VcHhgYzJYGU7CYlqtVnQ=";
           }
-          
+
           {
             name = "one-liner";
             version = "0.2.0";

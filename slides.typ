@@ -1,36 +1,40 @@
 #import "utils.typ": *
 
-#import "@preview/touying:0.5.5": *
-#import themes.metropolis: *
+#import "@preview/touying:0.6.1": *
+#import themes.dewdrop: *
+
+#import "@preview/catppuccin:1.0.1": catppuccin, flavors
+#let theme = flavors.mocha
+#show: catppuccin.with(theme)
 
 #import "@preview/tiaoma:0.3.0": barcode
-#import "@preview/catppuccin:1.0.1": catppuccin, flavors
 #import "@preview/one-liner:0.2.0": fit-to-width
 #import "@preview/biceps:0.0.1": flexwrap
 #import "@preview/fontawesome:0.6.0": *
 
 #let todo(content) = highlight(content)
 
-#let flavor = flavors.mocha
-#let palette = flavor.colors
-#let themes = palette.pairs().filter(((_, it)) => it.accent).to-dict()
-#let non-accent = palette.pairs().filter(((_, it)) => not it.accent).to-dict()
-#let (mauve, pink, rosewater, lavender, ..) = themes
-#import "@preview/numbly:0.1.0": numbly
-
-#set document(
-  title: "Introduction Video",
-  author: "Herschel Pravin Pawar",
-  date: datetime.today(),
+#let (document-title, document-author, document-date) = (
+  document-title: "Introduction Video",
+  document-author: "Herschel Pravin Pawar",
+  document-date: datetime.today(),
 )
 
-#let text-color = non-accent.text.rgb
-#let alert-primary-color = pink.rgb
-#let alert-secondary-color = rosewater.rgb
-#let header-background-color = lavender.rgb
-#let slide-background-color = non-accent.base.rgb
-#let focus-background-color = non-accent.crust.rgb
-#let focus-text-color = non-accent.surface0.rgb
+#set document(
+  title: document-title,
+  author: document-author,
+  date: document-date,
+)
+
+#let creative-font = "SpaceMono Nerd Font Propo"
+
+#let text-color = theme.colors.text.rgb
+#let alert-primary-color = theme.colors.pink.rgb
+#let alert-secondary-color = theme.colors.rosewater.rgb
+#let header-background-color = theme.colors.lavender.rgb
+#let slide-background-color = theme.colors.base.rgb
+#let focus-background-color = theme.colors.crust.rgb
+#let focus-text-color = theme.colors.surface0.rgb
 
 #let primary = alert-primary-color
 #let primary-light = alert-secondary-color
@@ -39,27 +43,30 @@
 #let neutral-dark = focus-background-color
 #let neutral-darkest = text-color
 
-
-#let creative-font = "SpaceMono Nerd Font Propo"
-
-#show: metropolis-theme.with(
+#show: dewdrop-theme.with(
   aspect-ratio: "16-9",
+  footer: self => {
+    let col = neutral-darkest
+    set text(fill: col)
+
+
+    grid(
+      columns: (1fr,) * 4,
+      align: center,
+      document-title,
+      {
+        show heading: it => it.body
+        utils.display-current-heading(level: 1)
+      },
+      document-author,
+      document-date.display(),
+    )
+  },
   navigation: none,
   config-info(
-    title: context repr(document.title),
-    subtitle: [
-      University of Aalto\
-      #text(size: 0.8em)[
-        #alert[Context:]
-        - Text #link("https://sakurakat.systems")[decorated like this] are links
-        - Acknowledgements at the end of the presentation
-        - Text using #text(font: creative-font, creative-font) are supposed to be "#text(font: creative-font)[creative]" elements
-        - List of tables, images, and links are in the Appendix at the end
-          - Download the presentation from #github-card("pawarherschel/uniofaalto2025") to view them
-      ]
-    ],
-    author: "Author: " + context document.author,
-    date: "Date: " + context document.date,
+    title: text(fill: black, document-title),
+    author: document-author,
+    date: datetime.today(),
   ),
   config-colors(
     primary: primary,
@@ -84,9 +91,6 @@
   dash: "densely-dashed",
 ))
 
-#set table(stroke: text-color)
-#set text(font: "JetBrains Mono")
-
 #set quote(block: true)
 #show quote: set align(center)
 #show quote: set text(font: creative-font)
@@ -101,7 +105,8 @@
   align(right)[-- #it.attribution]
 }
 
-#let blank-slide = focus-slide(config: (freeze-slide-counter: false))[
+
+#let blank-slide = slide[
   #text(
     font: creative-font,
     style: "italic",
@@ -113,6 +118,8 @@
     #smallcaps[This Page Has Been Intentionally Left Blank]
   ]
 ]
+
+#let alert(body) = text(fill: alert-primary-color, body)
 
 #let filepath(file, full-file: none) = {
   let file = file.codepoints().map(c => [#sym.wj#c]).join()
@@ -131,142 +138,118 @@
   }
 }
 
-#title-slide()
+#import "@preview/easy-typography:0.1.0": *
+#show: easy-typography.with(
+  body-size: 15pt,
+  fonts: (
+    heading: "Jetbrains Mono",
+    body: "Jetbrains Mono",
+  ),
+)
 
-// = \= Outline <touying:hidden>
-
-// #align(top)[
-//   #outline(title: none)
-// ]
-
-// = Self Introduction
-
-// == Who am I?
-
-// #grid(
-//   columns: 2,
-//   rows: 1,
-//   align: center,
-//   column-gutter: 2%,
-//   block(height: 1fr)[
-//     // #figure(
-//     //   image(
-//     //     "me.png",
-//     //     alt: "image of Herschel Pravin Pawar",
-//     //     fit: "contain",
-//     //     height: 1fr,
-//     //   ),
-//     //   caption: [Image of me #filepath("me.png")],
-//     // )
-//   ],
-//   align(left + horizon)[
-//     #text(size: 27pt)[
-//       #grid(
-//         rows: 1,
-//         columns: 2,
-//         column-gutter: 2%,
-//         // image("kibty.svg", height: 3em),
-//         align(left + horizon)[
-//           #alert[Herschel Pravin Pawar]
-//           #linebreak()
-//           #text(
-//             font: creative-font,
-//             size: 0.8em,
-//           )[#link("https://sakurakat.systems")[sakurakat.systems] <links>]
-//         ],
-//       )
-//     ]
-//     #align(bottom)[
-//       #text(size: 1em)[
-//         #par(justify: true)[
-//           #text(size: 0.695em)[
-//             Everything you see in this video --- scripts, links, and images --- are a part of a Typst document available freely on GitHub under mit licence.
-//           ]
-//         ]
-//         #grid(
-//           rows: 1,
-//           columns: 2,
-//           align: left + horizon,
-//           column-gutter: 2%,
-//           // image("cc.logo.svg", height: 1em),
-//           // [#link("https://github.com/pawarherschel/UniOfAalto")[GitHub:pawarherschel/UniOfAalto] <links>],
-//         )
-//       ]
-//     ]
-//   ],
-// )
-
+= #document-title
+== Context
+- This presentation was made for University of Aalto
+- Text #link("https://sakurakat.systems")[styled like this] are links.
+- Acknowledgements at the end of the presentation
+- List of tables, images, and links are in #todo[Appendix] at the end
+  - Slides are available for download at #todo[Slides link]
+#align(bottom, [
+  #raw(
+    ``` document.author: ```.text + repr(document-author),
+    lang: "typm",
+  )\
+  #raw(``` document.date: ```.text + repr(document-date), lang: "typm")
+])
 
 = Self Introduction
-
-
-
 == Who am I?
+#grid(
+  columns: 2,
+  rows: 1,
+  align: center,
+  column-gutter: 2%,
+  block(height: 1fr)[
+    // #figure(
+    //   image(
+    //     "me.png",
+    //     alt: "image of Herschel Pravin Pawar",
+    //     fit: "contain",
+    //     height: 1fr,
+    //   ),
+    //   caption: [Image of me #filepath("me.png")],
+    // )
+  ],
+  align(left + horizon)[
+    #text(size: 27pt)[
+      #grid(
+        rows: 1,
+        columns: 2,
+        column-gutter: 2%,
+        // image("kibty.svg", height: 3em),
+        align(left + horizon)[
+          #alert[Herschel Pravin Pawar]
+          #linebreak()
+          #text(
+            font: creative-font,
+            size: 0.8em,
+          )[#link("https://sakurakat.systems")[sakurakat.systems] <links>]
+        ],
+      )
+    ]
+    #align(bottom)[
+      #text(size: 1em)[
+        #par(justify: true)[
+          #text(size: 0.695em)[
+            Everything you see in this video --- scripts, links, and images --- are a part of a Typst document available freely on GitHub under mit licence.
+          ]
+        ]
+        #grid(
+          rows: 1,
+          columns: 2,
+          align: left + horizon,
+          column-gutter: 2%,
+          // image("cc.logo.svg", height: 1em),
+          // [#link("https://github.com/pawarherschel/UniOfAalto")[GitHub:pawarherschel/UniOfAalto] <links>],
+        )
+      ]
+    ]
+  ],
+)
 
+= Parrylord (Bevy)
+== Solo Developer
+== Theme
+== Result
 
-= Bevy: Rust
+= Your Own Size (Godot)
+== Artist
+=== and Tech Artist and Coordinator
 
-
-= Parrylord: Solo Developer
-
-
-= Parrylord: Theme
-
-
-= Parrylord: Result
-
-
-= Godot
-
-
-= Your Own Size: Artist (+ Tech Artist + Coordinator)
-
-
-= Your Own Size: Theme
-
-
-= Your Own Size: Showcase
-
-
-= Your Own Size: The problem
-
-
-= Your Own Size: Solution
-
-
-= Your Own Size: Result
-
+== Theme
+== Showcase
+== The problem
+== Solution
+== Result
 
 = Coventry University Summer School
+== Result
+
+= Fractured Elements (Unity)
+== Lead Developer
+== Theme
+== Result
 
 
-= Fractured Elements: Lead Developer
+= Cosmos Conquerors (Godot)
+== Solo Developer
+== Theme
+== Result
 
-
-= Fractured Elements: Theme
-
-
-= Fractured Elements: Result
-
-
-= Coventry University Summer School: Result
-
-
-= Cosmos Conquerors: Solo Developer
-
-
-= Cosmos Conquerors: Theme
-
-
-= Cosmos Conquerors: Result
-
-
-= Krita Palette Creator / Rosetta Code
-
+= Krita Palette Creator (Rust)
+== Rosetta Code
 
 = Why Aalto?
 
-
 = Acknowledgement
-
 
