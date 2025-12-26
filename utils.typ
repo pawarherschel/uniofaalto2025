@@ -1005,7 +1005,7 @@
   }
 }
 
-#let github-card(repo) = {
+#let github-card(repo, paged-breakable: true, paged-content: none) = {
   if repo.find("/") == none {
     panic(
       "Invalid repository. 'repo' attribute must be in the format 'owner/repo'",
@@ -1051,7 +1051,22 @@
   )
 
   context if target() != "html" {
-    link("https://github.com/" + repo)[GitHub:#repo]
+    let preview = if paged-content == none {
+      ("GitHub:" + repo)
+        .codepoints()
+        .join(
+          if paged-breakable {} else {
+            sym.wj
+          },
+        )
+    } else {
+      paged-content
+    }
+
+    link(
+      "https://github.com/" + repo,
+      preview,
+    )
   } else {
     section(html.elem(
       "a",

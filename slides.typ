@@ -9,6 +9,7 @@
 
 #import "@preview/tiaoma:0.3.0": barcode
 #import "@preview/one-liner:0.2.0": fit-to-width
+#import "@preview/oasis-align:0.3.2": *
 #import "@preview/biceps:0.0.1": flexwrap
 #import "@preview/fontawesome:0.6.0": *
 
@@ -45,21 +46,32 @@
 
 #show: dewdrop-theme.with(
   aspect-ratio: "16-9",
+  footer-right: context {
+    utils.slide-counter.display(it => if it < 10 {
+      hide[0]
+      str(it)
+    } else {
+      str(it)
+    })
+    " / "
+    utils.last-slide-number
+  },
   footer: self => {
     let col = neutral-darkest
     set text(fill: col)
-
-
-    grid(
-      columns: (1fr,) * 4,
-      align: center,
-      document-title,
-      {
-        show heading: it => it.body
-        utils.display-current-heading(level: 1)
-      },
-      document-author,
-      document-date.display(),
+    box(
+      inset: (right: 3%),
+      grid(
+        columns: 5,
+        column-gutter: 3%,
+        align: center,
+        document-title,
+        {
+          align(left, box(width: 1fr, utils.display-current-heading(level: 1)))
+        },
+        document-author,
+        document-date.display(),
+      ),
     )
   },
   navigation: none,
@@ -76,7 +88,27 @@
     neutral-dark: neutral-dark,
     neutral-darkest: neutral-darkest,
   ),
+  config-common(
+    // show-notes-on-second-screen: right,
+  ),
+  config-page(numbering: n => if n < 10 { "0" + str(n) } else { str(n) }),
 )
+
+// #pdfpc.config(
+// duration-minutes: 2,
+// start-time: datetime.today(),
+// end-time: datetime(hour: 14, minute: 40, second: 0),
+// last-minutes: 5,
+// note-font-size: 12,
+// disable-markdown: false,
+// default-transition: (
+//   type: "push",
+//   duration-seconds: 2,
+//   angle: ltr,
+//   alignment: "vertical",
+//   direction: "inward",
+// ),
+// )
 
 #show heading.where(depth: 1): set heading(numbering: (..n) => "=" * 1)
 #show heading.where(depth: 2): set heading(numbering: (..n) => "=" * 2)
@@ -138,6 +170,18 @@
   }
 }
 
+#let f(path, root: "assets", ..args, c: none) = {
+  let inner = image(
+    root + "/" + path,
+    ..if c != none { (alt: c) },
+    ..args,
+  )
+  if c != none {
+    figure(inner, caption: [#c #filepath(root + "/" + path)])
+  } else { inner }
+}
+
+
 #import "@preview/easy-typography:0.1.0": *
 #show: easy-typography.with(
   body-size: 15pt,
@@ -147,75 +191,124 @@
   ),
 )
 
+#set par(justify: true, linebreaks: "optimized")
+
+#{
+  set text(size: 1.4em)
+
+  title-slide(
+    extra: block(
+      height: 1fr,
+      align(
+        top,
+        {
+          speaker-note[meow]
+          box(
+            inset: (top: 3em),
+            width: 1fr,
+            align(left)[
+              = Context
+              - This presentation was made for University of Aalto
+              - Text #link("https://sakurakat.systems")[styled like this] are links.
+              - Acknowledgements at the end of the presentation
+              - List of tables, images, and links are in #todo[Appendix] at the end
+                - Slides are available for download at #todo[Slides link]
+            ],
+          )
+        },
+      ),
+    ),
+  )
+}
+
 = #document-title
-== Context
-- This presentation was made for University of Aalto
-- Text #link("https://sakurakat.systems")[styled like this] are links.
-- Acknowledgements at the end of the presentation
-- List of tables, images, and links are in #todo[Appendix] at the end
-  - Slides are available for download at #todo[Slides link]
-#align(bottom, [
-  #raw(
-    ``` document.author: ```.text + repr(document-author),
-    lang: "typm",
-  )\
-  #raw(``` document.date: ```.text + repr(document-date), lang: "typm")
-])
 
 = Self Introduction
 == Who am I?
-#grid(
-  columns: 2,
-  rows: 1,
-  align: center,
-  column-gutter: 2%,
-  block(height: 1fr)[
-    // #figure(
-    //   image(
-    //     "me.png",
-    //     alt: "image of Herschel Pravin Pawar",
-    //     fit: "contain",
-    //     height: 1fr,
-    //   ),
-    //   caption: [Image of me #filepath("me.png")],
-    // )
-  ],
-  align(left + horizon)[
-    #text(size: 27pt)[
-      #grid(
-        rows: 1,
+
+#speaker-note[meow]
+#{
+  let left = block(height: 1fr, f(
+    "me.jpg",
+    c: "Herschel Pravin Pawar in a park with flowers on their ears",
+    fit: "cover",
+    height: 1fr,
+  ))
+
+  let right = {
+    let name = alert[Herschel Pravin Pawar]
+
+    let alt-name = context {
+      set text(size: 0.75em, font: creative-font)
+      let nickname = [kat]
+      let height = measure(nickname).height
+
+      nickname
+      [ ]
+      box(f("Nonbinary_flag.svg", height: height))
+    }
+    let shill = text(
+      size: 0.5em,
+      link("https://sakurakat.systems")[sakurakat.systems],
+    )
+
+    let full-shill = {
+      name
+      linebreak()
+      alt-name
+      linebreak()
+      shill
+    }
+
+    fit-to-width(context {
+      let t = full-shill
+      let height = measure(t).height
+
+      grid(
         columns: 2,
         column-gutter: 2%,
-        // image("kibty.svg", height: 3em),
-        align(left + horizon)[
-          #alert[Herschel Pravin Pawar]
-          #linebreak()
-          #text(
-            font: creative-font,
-            size: 0.8em,
-          )[#link("https://sakurakat.systems")[sakurakat.systems] <links>]
-        ],
+        f("kibty.svg", height: height), t,
       )
-    ]
-    #align(bottom)[
-      #text(size: 1em)[
-        #par(justify: true)[
-          #text(size: 0.695em)[
-            Everything you see in this video --- scripts, links, and images --- are a part of a Typst document available freely on GitHub under mit licence.
-          ]
-        ]
-        #grid(
-          rows: 1,
-          columns: 2,
-          align: left + horizon,
-          column-gutter: 2%,
-          // image("cc.logo.svg", height: 1em),
-          // [#link("https://github.com/pawarherschel/UniOfAalto")[GitHub:pawarherschel/UniOfAalto] <links>],
+    })
+
+
+    align(bottom, text(size: 1em, {
+      par(justify: true, linebreaks: "optimized", text(size: 0.9em)[
+        Everything you see in this video --- scripts, links, and images --- are a part of a Typst document available freely on GitHub under a public domain licence.
+      ])
+      // fit-to-width(
+      context {
+        let t = github-card(
+          "pawarherschel/uniofaalto2025",
+          paged-content: [GitHub:pawarherschel#linebreak()/uniofaalto2025],
         )
-      ]
-    ]
-  ],
-)
+        let height = measure(t).height
+
+        box(
+          link(
+            "https://creativecommons.org/licenses/by-nd/4.0/",
+            f("cc.logo.svg", height: height),
+          ),
+        )
+        h(1fr)
+        box(t)
+        h(1fr)
+        box(
+          [Attributions available at #linebreak()assets/attributions.toml],
+          height: height,
+        )
+      }
+      // )
+    }))
+  }
+
+  grid(
+    columns: (1fr, 2fr),
+    align: alignment.left + horizon,
+    column-gutter: 2%,
+    left, right,
+  )
+}
 
 = Parrylord (Bevy)
 == Solo Developer

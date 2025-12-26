@@ -156,6 +156,95 @@
 
         # Watch a project and recompile on changes
         watch-script = typixLib.watchTypstProject commonArgs;
+
+        tinymist = pkgs.rustPlatform.buildRustPackage (
+          finalAttrs: with pkgs; {
+            pname = "tinymist";
+            # Please update the corresponding vscode extension when updating
+            # this derivation.
+            version = "0.14.4";
+
+            src = pkgs.fetchFromGitHub {
+              owner = "Myriad-Dreamin";
+              repo = "tinymist";
+              tag = "v${finalAttrs.version}";
+              hash = "sha256-TbiihruRF5N0d9VQ/9NB320q4Hf1YlfAfkMhhTOOBGo=";
+              # hash = "sha256-RKWEVfrAki9ZkN3WE0SD0Hrr1lmX97nddV8Gv74MFCE=";
+            };
+
+            # };
+
+            # cargoHash = "sha256-LISK+62cY1ZAIGLS3spF+8KvD8k0fZnIg+BuQ+25BoM=";
+            cargoHash = "sha256-rg2PSQL3oHMvL/QMusF0hfxvrlv3ZxYh28FD1JZJDbE=";
+
+            nativeBuildInputs = [
+              installShellFiles
+              pkg-config
+            ];
+
+            checkFlags = [
+              "--skip=e2e"
+
+              # Require internet access
+              "--skip=docs::package::tests::cetz"
+              "--skip=docs::package::tests::fletcher"
+              "--skip=docs::package::tests::tidy"
+              "--skip=docs::package::tests::touying"
+
+              # Tests are flaky for unclear reasons since the 0.12.3 release
+              # Reported upstream: https://github.com/Myriad-Dreamin/tinymist/issues/868
+              "--skip=analysis::expr_tests::scope"
+              "--skip=analysis::post_type_check_tests::test"
+              "--skip=analysis::type_check_tests::test"
+              "--skip=completion::tests::test_pkgs"
+              "--skip=folding_range::tests::test"
+              "--skip=goto_definition::tests::test"
+              "--skip=hover::tests::test"
+              "--skip=inlay_hint::tests::smart"
+              "--skip=prepare_rename::tests::prepare"
+              "--skip=references::tests::test"
+              "--skip=rename::tests::test"
+              "--skip=semantic_tokens_full::tests::test"
+            ];
+
+            postInstall = lib.optionalString (stdenv.hostPlatform.emulatorAvailable buildPackages) (
+              let
+                emulator = stdenv.hostPlatform.emulator buildPackages;
+              in
+              ''
+                installShellCompletion --cmd tinymist \
+                  --bash <(${emulator} $out/bin/tinymist completion bash) \
+                  --fish <(${emulator} $out/bin/tinymist completion fish) \
+                  --zsh <(${emulator} $out/bin/tinymist completion zsh)
+              ''
+            );
+
+            nativeInstallCheckInputs = [
+              versionCheckHook
+            ];
+            versionCheckProgramArg = "-V";
+            doInstallCheck = true;
+
+            passthru = {
+              updateScript = nix-update-script { };
+              tests = {
+                vscode-extension = vscode-extensions.myriad-dreamin.tinymist;
+              };
+            };
+
+            meta = {
+              description = "Integrated language service for Typst";
+              homepage = "https://github.com/Myriad-Dreamin/tinymist";
+              changelog = "https://github.com/Myriad-Dreamin/tinymist/blob/v${finalAttrs.version}/editors/vscode/CHANGELOG.md";
+              license = lib.licenses.asl20;
+              mainProgram = "tinymist";
+              maintainers = with lib.maintainers; [
+                GaetanLepage
+                lampros
+              ];
+            };
+          }
+        );
       in
       {
         checks = {
@@ -183,8 +272,9 @@
             watch-script
             # More packages can be added here, like typstfmt
             # pkgs.typstfmt
-            pkgs.tinymist
+            tinymist
             pkgs.typstyle
+            pkgs.touying
           ];
         };
       }
