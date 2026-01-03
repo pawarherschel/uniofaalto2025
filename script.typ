@@ -1,5 +1,6 @@
 #import "@preview/wordometer:0.1.5": word-count
 
+/*
 = Introduction video
 
 Each applicant should submit a short video (max 2 minutes) where they tell about themselves, their background, interests, and portfolio highlights in English. Please start with a brief (max 20s) shot where you introduce yourself, speaking to the camera. After that, please include and explain content such as gameplay clips of games that you have made or other relevant content that showcases your skills. Please note that in addition to your best game projects, we are interested in all forms of creativity, so you can also show other forms of art or creative work. For each project shown on the video, please clearly state or add subtitles that state the year and your role or contribution such as programming, art or design.
@@ -9,6 +10,7 @@ Note that you can film yourself using a smartphone camera—we do not expect the
 The video should be submitted as a link in a pdf file named “Introduction_Video.pdf”. The link can be to an unlisted or private YouTube video, for instance. If the video is password-protected, the password must be included in the PDF. Please make sure that the link is clickable or can be easily copied from the PDF.
 
 The video will be only viewed by the evaluators. However, if you are selected, we will ask for your permission to share the video with other selected students.
+*/
 
 #let slide = counter("slide")
 #let time-elapsed = state("time-elapsed", 0)
@@ -62,7 +64,7 @@ The video will be only viewed by the evaluators. However, if you are selected, w
   }
 }
 
-#let next-slide(title, content) = page[
+#let next-slide(title, content) = page(height: auto)[
   #word-count(total => [
     #let budget = (total.words - 11) / (150 /*wpm*/ / 60)
     #rect(width: 100%, inset: 1em)[
@@ -133,7 +135,6 @@ and needs to be spoken slower
 
 script target (in seconds): #script-target (#format-time(script-target))
 
-#set page(margin: (left: 15em, right: 15em), height: auto)
 
 #next-slide[Title Slide][
   I'm going to talk fast,
@@ -146,11 +147,9 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   #breath
 ]
-
 #next-slide[Self Introduction][
   Heya,
 ]
-
 #next-slide[Who am I?][
   my name is Herschel Pravin Pawar,
 
@@ -162,30 +161,14 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   #breath
 ]
-
-
-
-#next-slide[Bevy: Rust][
+#next-slide[Parrylord (Bevy)][
   Last year I set out to learn Bevy.
 
-  An ECS based game engine.
+  An ECS based game engine
+
+  written in Rust.
 ]
-#next-slide[Parrylord: Solo Developer][
-  After learning the basics,
-
-  I decided to participate in Bevy Jam 6.
-
-  The theme was "Chain Reaction".
-
-  I also made an online leaderboard for the game.
-
-  #TODO[slogan: Turn the tides, convert the usual bullet hell experience into bullet heaven by parrying the enemies' projectiles!]
-]
-#next-slide[Parrylord: Theme][
-  The main mechanic is
-
-  parrying.
-
+#next-slide[Theme][
   I wanted to encourage the player to take risks.
 
   So,
@@ -202,9 +185,14 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   parried at once.
 ]
-#next-slide[Parrylord: Result][
-  #TODO[SHOW SCOREBOARD HERE]
+#next-slide[Solo Developer][
+  After learning the basics,
 
+  I decided to participate in Bevy Jam 6.
+
+  I also made an online leaderboard for the game.
+]
+#next-slide[Result][
   I placed
 
   sixty first
@@ -213,67 +201,77 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   ninety eight.
 ]
-
-#next-slide[Godot][
-  A few years prior
-
-  I learnt Godot for game dev
-
-  and made quite a few
-
-  proof of concepts
-
-  to learn individual elements
-
-  for programming.
-]
-#next-slide[Your Own Size: Artist (+ Tech Artist + Coordinator)][
+#next-slide[Your Own Size (Godot)][
   This year
 
   I got an itch
 
   to do pixel art again.
 
-  And participated as pixel artist for GameDev.tv Game Jam 2025.
+  And participated as pixel artist
 
-  The theme was "Tiny Worlds".
+  for GameDev.tv Game Jam 2025.
 ]
-#next-slide[Your Own Size: Theme][
+#next-slide[Theme][
+  We wanted to
 
-  #TODO[explain how i implemented the theme]
+  incorporate the theme
+
+  via aesthetics
+
+  and story.
 ]
-#next-slide[Your Own Size: Showcase][
-  I was the secondary pixel artist,
+#next-slide[Artist][
+  The art team
 
-  as I had less experience compared to my teammate
+  had one more person.
 
-  Cosmical One
+  My teammate
 
-  and consequently, I was slower.
+  was more
 
-  His artwork was really good,
+  experienced
 
-  But we had a problem.
+  and faster
+
+  than me.
 ]
-#next-slide[Your Own Size: The problem][
-  He drew a really beautiful background.
+#next-slide[Showcase][
+  My biggest contribution was
 
-  Which made it difficult to see
+  three by three
 
-  the platforms and enemies.
+  minimal
+
+  autotile
+
+  tileset.
 ]
-#next-slide[Your Own Size: Solution][
-  I made a shader
+#next-slide[The problem][
+  Cosmical One,
 
-  which blurs the background
+  my teammate
 
-  if you don't move.
+  drew very beautiful backgrounds.
 
-  And made sure it gradually blurs and unblurs,
+  But they made it difficult
 
-  just in case someone has problems with flashing lights.
+  to see the platforms
+
+  and enemies.
 ]
-#next-slide[Your Own Size: Result][
+#next-slide[Solution][
+  I wanted the players
+
+  to appreciate the backgrounds.
+
+  So,
+
+  I finally got
+
+  to make a shader.
+]
+#next-slide[Result][
   We placed
 
   seventy eighth
@@ -282,23 +280,49 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   one thousand and ten.
 ]
-
 #next-slide[Coventry University Summer School][
   Until last year
 
-  I was umming and arring about game dev.
+  I was unsure about game dev.
 
-  I didn't have any exposure to game dev irl
+  I didn't know any game devs irl
 
-  but one of my friends'
+  so when one of my friends'
 
   told me about a summer school program,
 
   and I participated in it.
 ]
-#next-slide[Fractured Elements: Lead Developer][
-  The theme was "Continous Change" and "2D Platformer"
+#next-slide[Result][
+  I met a lot of people there
 
+  talked to a lot of people
+
+  especially from games industry
+
+  and concluded that
+
+  I do want to pursue game dev.
+]
+#next-slide[Fractured Elements (Unity)][
+  The finale for the
+
+  summer school was
+
+  a game jam.
+]
+#next-slide[Theme][
+  We wanted to incorporate
+
+  the theme
+
+  into the lore,
+
+  which gets reflected into the game
+
+  as game mechanic.
+]
+#next-slide[Lead Developer][
   My partner had been programming for less than me.
 
   But he plays
@@ -315,16 +339,7 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   and other aspects.
 ]
-#next-slide[Fractured Elements: Theme][
-  The player's elemental powers are unstable.
-
-  They keep switching between elemental forms.
-
-  To gain mastery over the elements,
-
-  you need to defeat the guardians.
-]
-#next-slide[Fractured Elements: Result][
+#next-slide[Result][
   We placed
 
   second
@@ -333,23 +348,7 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   four.
 ]
-#next-slide[Coventry University Summer School: Result][
-  I met a lot of people there
-
-  talked to a lot of people
-
-  especially from games industry
-
-  and concluded that
-
-  I do want to pursue game dev.
-]
-
-#next-slide[Cosmos Conquerors: Solo Developer][
-  GMTK Game Jam 2023
-
-  was my first game jam experience.
-
+#next-slide[Cosmos Conquerors (Godot)][
   This was also the first game
 
   I made with Godot
@@ -357,25 +356,18 @@ script target (in seconds): #script-target (#format-time(script-target))
   which was not just
 
   a proof of concept.
-
-  #TODO[slogan It's time to turn the tables and show those heroes who's boss!]
 ]
-#next-slide[Cosmos Conquerors: Theme][
-  In SHMUPs,
+#next-slide[Theme][
+  And it made me realize
 
-  you fight against hoards of enemies.
+  that I enjoy game dev
 
-  Now,
-
-  you're a hoard of enemies
-
-  fighting against
-
-  endless and
-
-  evermore powerful enemies.
+  even if i'm bad at ideas
 ]
-#next-slide[Cosmos Conquerors: Result][
+#next-slide[Solo Developer][
+  I enjoy the process of making games
+]
+#next-slide[Result][
   I placed
 
   four thousand six hundread and twelfth
@@ -384,326 +376,65 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   six thousand seven hundread and third.
 ]
+#next-slide[Krita Palette Creator (Rust)][
+  I tend to only
 
-#next-slide[Krita Palette Creator / Rosetta Code][
-  A while back
+  write code and build
 
-  I had a problem
+  when I have a problem.
 
-  where I wanted to quantize colors in an image.
+  So when I wanted
 
-  I had done it more like four times
+  to extract color palette
 
-  and tinkering with Krita was annoying.
+  from an image,
 
-  So I made a small tool
+  and existing tools were annoying,
 
-  which extracts the dominant colors
-
-  from an image.
+  I decided to make the tool myself.
 ]
+#next-slide[Rosetta Code][
+  I first checked Rosetta Code.
 
-#next-slide[Why Aalto?][
-  #TODO[TODO]
+  But they didn't have the median cut algorithm.
 
-  Everything I read on the page,
-
-  I went
-
-  "you don't need to sell me more on it".
+  So i contributed that as well.
 ]
+#next-slide[Acknowledgement][
+  I know I stand
 
-#next-slide[Acknowledgement][#TODO[TODO]]
+  on the shoulder of
 
-/*
+  giants.
+]
+#next-slide[Heavily Inspired by][
+  This video would
 
-#next-slide(budget: 2.5)[Coventry University Summer School Game Jam]<slides>
+  not have
 
-I participated in the
+  been
 
-#slow-down-hint[Summer School] for #slow-down-hint[Game Development].
+  possible
 
-#next-slide(budget: 2)[Result]<slides>
+  without the generations of
 
-We wrapped up with a game jam,
+  people who came
 
-and these are the results.
+  before me.
+]
+#next-slide[Important Links][
+  There's so many people
 
-#next-slide(budget: 2)[Themes]<slides>
+  who influenced me
 
-The themes were #slow-down-hint[Continuous Change] and #slow-down-hint[2D Platformer].
+  but I don't remember.
 
-#breath
+  But I do hope
 
-#next-slide(budget: 3.5)[The Team]<slides>
+  one day someone will look
 
-We created #slow-down-hint[Fractured Elements],
-
-featuring a player with cycling #slow-down-hint[elemental] powers
-
-#next-slide(budget: 4)[Main Mechanic]<slides>
-
-I focused on making the gameplay
-
-while my partner focused on
-
-the creative aspects of the game.
-
-#breath
-
-#next-slide(budget: 6)[Player Architecture]<slides>
-
-the player code I wrote
-
-was reused for the final boss
-
-and the high-level code was #slow-down-hint[generic] over #slow-down-hint[weapons]
-
-and
-
-#slow-down-hint[elemental powers].
-
-#breath
-
-#next-slide(budget: 2.5)[#[Game Maker ToolKit's 2023 Game Jam]]<slides>
-
-I taught myself Godot
-
-and
-
-participated in a game jam.
-
-#next-slide(budget: 3)[Result]<slides>
-
-These were the results.
-
-There were over #slow-down-hint[six thousand seven hundred] submissions.
-
-#next-slide(budget: 1.5)[Theme]<slides>
-
-The theme was #slow-down-hint[Roles Reversed].
-
-#breath
-
-#next-slide(budget: 3.5)[Gameplay]<slides>
-
-In the game,
-
-players control aliens
-
-fighting to survive
-
-against heros.
-
-#next-slide(budget: 6.5)[Main Mechanic]<slides>
-
-A random alien fires
-
-while space bar is pressed
-
-requiring the player
-
-to choose between
-
-having #slow-down-hint[predictability]
-
-or
-
-having more health.
-
-#breath
-
-#next-slide(budget: 4)[Bevy]<slides>
-
-Recently,
-
-I've been learning Bevy,
-
-a #slow-down-hint[Rust-based] #slow-down-hint[ECS] #slow-down-hint[game engine].
-
-#next-slide(budget: 4.5)[EMPTY SLIDE]<slides>
-
-So far,
-
-I've remade pong.
-
-I'm using the project to learn
-
-how to make online #slow-down-hint[multiplayer] games.
-
-#breath
-
-#next-slide(budget: 1.5)[Other Projects]<slides>
-
-Some other projects include:
-
-#next-slide(budget: 5.5)[VRCX Insights]<slides>
-
-VRCX Insights
-
-A #slow-down-hint[data mining] tool to extract friend circles
-
-by corelating
-
-people who are in the same room.
-
-#next-slide(budget: 2)[Output Metadata]<slides>
-
-You can see
-
-why I had to zoom out the image so much.
-
-#breath
-
-#next-slide(budget: 4.5)[Booth Archiver]<slides>
-
-Another project is Booth Archiver,
-
-which compiles your Booth wish list
-
-into a spreadsheet.
-
-#next-slide(budget: 4)[Krita/GIMP Palette Generator]<slides>
-
-I also created a tool
-
-which quantizes given image
-
-and
-
-generates a palette from it.
-
-#next-slide(budget: 3)[Rosettacode]<slides>
-
-I also contributed
-
-the code I wrote
-
-to Rosettacode.
-
-#breath
-
-#next-slide(budget: 2.5)[Kait]<slides>
-
-The textures for my OC
-
-were made using Photoshop.
-
-#next-slide(budget: 2)[Other Creative Stuff]<slides>
-
-Here are some of the artworks I've made
-
-#next-slide(budget: 2)[Goals for 2025]<slides>
-
-These are some of my goals
-
-for
-
-2025
-
-#next-slide(budget: 3)[Goal --- Short Description --- Why?]<slides>
-
-the most important being
-
-#slow-down-hint[WGPU] and #slow-down-hint[public speaking]
-
-#breath
-
-#next-slide(budget: 4.5)[Why Aalto]<slides>
-
-I'm active in #slow-down-hint[Rust]
-
-and
-
-#slow-down-hint[queer meetups],
-
-always striving to create a #slow-down-hint[welcoming atmosphere]
-
-and
-
-support others.
-
-#breath
-
-#next-slide(budget: 7.5)[Acknowledgement]<slides>
-
-This #slow-down-hint[collaborative] spirit is something I value deeply
-
-and
-
-is one of the main reasons that the #slow-down-hint[multidisciplinary],
-
-project-based approach at Aalto resonates with me.
-
-#breath
-
-#next-slide(budget: 3.5)[Heavily Inspired by]<slides>
-
-I believe that innovation #slow-down-hint[thrives] when people from #slow-down-hint[diverse backgrounds] come together,
-
-#next-slide(budget: 6.5)[End Slide]<slides>
-
-and Aalto's #slow-down-hint[environment] provides
-
-the perfect space
-
-to exchange ideas
-
-and grow,
-
-both technically
-
-and personally.
-
-#next-slide(budget: 2.5)[Ending Note]<slides>
-
-To close,
-
-I'd like to share something
-
-I saw on Tumblr
-
-#next-slide(budget: 2)[Tumblr Post]<slides>
-
-Its a post by
-
-#slow-down-hint[viridian masquerade]
-
-#next-slide(budget: 1.5)[THE Line]<slides>
-
-This resonated very deeply with me
-
-#next-slide(budget: 5)[EMPTY SLIDE]<slides>
-
-If I was more creative,
-
-I'd adapt it to
-
-learning
-
-and
-
-growth
-
-but I'm not
-
-the best I can come up with is
-
-#next-slide(budget: 2)[My heart]<slides>
-
-#breath
-
-...
-
-...
-
-...
-
-Thank you.
-
-#next-slide(budget: 0)[THE END]<slides>
-
-*/
+  at my work and be influenced.
+]
 
 #pagebreak(weak: true)
 

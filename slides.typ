@@ -19,6 +19,7 @@
 #import transform: ccw
 
 #import "@preview/lovelace:0.3.0": *
+#import "@preview/fancy-tiling:1.0.0": *
 
 #let todo(content) = highlight(fill: theme.colors.red.rgb, text(
   fill: theme.colors.base.rgb,
@@ -251,6 +252,9 @@
   )
 }
 
+= Outline
+#slide(columns(2, outline()), align: top)
+
 = Self Introduction
 == Who am I?
 #{
@@ -384,6 +388,8 @@
 
 
 = Parrylord (Bevy)
+#alert[Bevy Jam 6]
+
 == Theme
 #center-item-with-subtext(quote[Chain Reaction])[
   Turn the tides, convert the bullet hell into bullet heaven by parrying the enemies' projectiles!
@@ -391,17 +397,31 @@
 == Solo Developer
 #center-item-with-subtext(
   multiplier: 1,
-  f(
-    "parrylord.png",
-    height: 70%,
-    width: auto,
-    fit: "contain",
-    c: "Preview image for the game \"Parrylord\" as seen on itch.io",
-  ),
-)[
-  - First time using Bevy (an ECS in Rust)
-  - Created an online leaderboard
-]
+  {
+    grid(
+      columns: 2,
+      column-gutter: 2%,
+      f(
+        "parrylord.png",
+        height: 70%,
+        width: auto,
+        fit: "contain",
+        c: "Preview image for the game \"Parrylord\" as seen on itch.io",
+      ),
+      f(
+        "parrylord-leaderboard.png",
+        height: 70%,
+        width: auto,
+        fit: "contain",
+        c: "In-game leaderboard for the game",
+      ),
+    )
+  },
+  align(center, block(align(left)[
+    - First time using Bevy (an ECS in Rust)
+    - Created an online leaderboard
+  ])),
+)
 
 
 == Result
@@ -459,6 +479,8 @@
 
 
 = Your Own Size (Godot)
+#alert[GameDev.tv Game Jam 2025]
+
 == Theme
 #center-item-with-subtext(quote[Tiny Worlds])[
   Uh Oh, you've been shrunk down to the size of a bug! Time to fight your way
@@ -479,27 +501,36 @@
     - Wrote my first shader :D
 ]
 == Showcase
-#masonry(
-  (
-    ccw(f("your-own-size/cracked-wood-tileset.png")),
-    f("your-own-size/branch_fall.gif"),
-  ),
-  (
-    f("your-own-size/heart.gif"),
-    f("your-own-size/kibby.gif"),
-  ),
-  (
-    f("your-own-size/nerd_room.png"),
-    f("your-own-size/nerd_room_background.png"),
-  ),
-  (
-    f("your-own-size/water_drop.gif"),
-    f("your-own-size/venus_flytrap.gif"),
-    f("your-own-size/worm_crawl.gif"),
-    f("your-own-size/worm_death.gif"),
+#block(
+  fill: theme.colors.text.rgb,
+  outset: 1em,
+  masonry(
+    (
+      ccw(f("your-own-size/cracked-wood-tileset.png")),
+    ),
+    (
+      f("your-own-size/branch_fall.gif"),
+      f("your-own-size/heart.gif"),
+      f("your-own-size/kibby.gif"),
+    ),
+    (
+      f("your-own-size/nerd_room.png"),
+      f("your-own-size/nerd_room_background.png"),
+    ),
+    (
+      f("your-own-size/water_drop.gif"),
+      f("your-own-size/venus_flytrap.gif"),
+      f("your-own-size/worm_crawl.gif"),
+      f("your-own-size/worm_death.gif"),
+    ),
+    (
+      f("your-own-size/mosquito_attack.gif"),
+      f("your-own-size/mosquito_death.gif"),
+      f("your-own-size/mosquito.gif"),
+      f("your-own-size/mosquito_idle.gif"),
+    ),
   ),
 )
-#hide[meow]
 
 == The problem
 #place(
@@ -520,7 +551,10 @@
 )
 
 == Solution
-#todo[show the blur and unblur here]
+#f(
+  "your-own-size/anim.gif",
+  c: "gif of the game which shows the background blurring and unblurring",
+)
 
 == Result
 #let heads = (
@@ -571,10 +605,14 @@
 ]
 
 = Coventry University Summer School
+#alert[Committing to Game Dev]
+
 == Result
 #f("covuni.jpg", c: "Photo of us in the lab", height: 1fr)
 
 = Fractured Elements (Unity)
+#alert[Coventry University Summer School '24]
+
 == Theme
 #center-item-with-subtext(
   multiplier: 2.3,
@@ -626,6 +664,8 @@
 ]
 
 = Cosmos Conquerors (Godot)
+#alert[GMTK Game Jam 2023]
+
 == Theme
 #center-item-with-subtext(quote[Role Reversal])[
   It's time to turn the tables and show those heroes who's boss!
@@ -666,6 +706,12 @@
 
 
 = Krita Palette Creator (Rust)
+#alert[
+  I had a reccuring problem
+
+  I solved the problem
+]
+
 == Rosetta Code
 #block(height: 1fr, {
   columns(2, {
@@ -720,6 +766,8 @@
 
 
 = Acknowledgement
+#alert[Never alone]
+
 == Heavily Inspired by
 #box(width: 1fr, grid(
   row-gutter: 1fr,
@@ -746,7 +794,8 @@
   - / #link(
         "https://typst.app/",
       )[Typst]: An an alternative to LaTeX written in Rust
-  - / #todo[Video Editor]:
+  - / #link("https://kdenlive.org/")[kdenlive]: Video Editor
+  - / #link("https://www.audacityteam.org/")[Audacity]: Audio Editor
   - / #link("https://touying-typ.github.io/")[Touying]: Slides framework
     - / Metropolis: Slides theme
     - / #link(
