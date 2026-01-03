@@ -1147,6 +1147,36 @@
   }
 }
 
+#let github-blob-to-raw(link, anchor: none) = {
+  // https://github.com                / pawarherschel / resume / blob       / main/resume.pdf
+  // https://github.com                / pawarherschel / resume / blob       / main/resume.pdf
+  // https://raw.githubusercontent.com / pawarherschel / resume / refs/heads / main/resume.pdf
+
+  let split-once(s, p) = {
+    (s.slice(0, s.position(p)), s.slice(s.position(p) + 1, none))
+  }
+
+  let (_, rest) = link.split("https://github.com/")
+  let (owner, rest) = split-once(rest, "/")
+  let (repo, rest) = split-once(rest, "/")
+
+  let (_, rest) = split-once(rest, "/")
+
+  let anchor = if anchor == none {
+    "refs/heads"
+  } else { anchor }
+
+  let x = (
+    "https://raw.githubusercontent.com",
+    owner,
+    repo,
+    anchor,
+    rest,
+  ).join("/")
+
+  x
+}
+
 #let github-gist(repo: "") = {
   if repo.find("/") == none {
     panic(

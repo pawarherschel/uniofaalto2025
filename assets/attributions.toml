@@ -1,6 +1,7 @@
 ["assets/cc.logo.svg"]
 by.name = "Creative Commons"
 by.link = "https://creativecommons.org/mission/downloads/"
+under.name = "TODO"
 under.link = "https://creativecommons.org/policies/"
 
 ["assets/Nonbinary_flag.svg"]
@@ -8,3 +9,145 @@ by.name = "Kye Rowan"
 by.link = "https://commons.wikimedia.org/w/index.php?curid=58077687"
 under.name = "Public Domain / CC0"
 under.link = "https://creativecommons.org/publicdomain/zero/1.0/"
+
+["assets/me.jpg"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "Unlicensed"
+
+["assets/kibty.svg"]
+by.name = "Twitter (Modified)"
+by.link = "https://github.com/twitter/twemoji"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/parrylord.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "https://github.com/pawarherschel/parrylord"
+under.name = "TODO"
+under.link = "TODO"
+
+["assets/your-own-size.png"]
+by.name = "CosmicalOne"
+under.name = "UNLICENSED"
+
+["assets/your-own-size/branch_fall.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/cracked-wood-tileset.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/heart.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/kibby.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/kibty.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/nerd_room.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/nerd_room_background.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/venus_flytrap.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/water_drop.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/worm_crawl.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/worm_death.gif"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/your-own-size/01_sky.png"]
+by.name = "CosmicalOne"
+under.name = "UNLICENSED"
+
+["assets/your-own-size/02_sky.png"]
+by.name = "CosmicalOne"
+under.name = "UNLICENSED"
+
+["assets/your-own-size/03_sky.png"]
+by.name = "CosmicalOne"
+under.name = "UNLICENSED"
+
+["assets/your-own-size/04_sky.png"]
+by.name = "CosmicalOne"
+under.name = "UNLICENSED"
+
+["assets/your-own-size/05_sky.png"]
+by.name = "CosmicalOne"
+under.name = "UNLICENSED"
+
+["assets/covuni.jpg"]
+by.name = "UNKNOWN"
+under.name = "UNLICENSED"
+
+["assets/fractured-elements.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/shashank-and-me.jpg"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+
+["assets/kpc/2.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/kpc/2.png.5.png"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"
+
+["assets/kpc/2.png.5.png.gpl"]
+by.name = "Herschel Pravin Pawar"
+by.link = "TODO"
+under.name = "CC-BY 4.0"
+under.link = "https://creativecommons.org/licenses/by/4.0/"

@@ -12,10 +12,10 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     # Example of downloading icons from a non-flake source
-    # font-awesome = {
-    #   url = "github:FortAwesome/Font-Awesome";
-    #   flake = false;
-    # };
+    font-awesome = {
+      url = "github:FortAwesome/Font-Awesome";
+      flake = false;
+    };
   };
 
   outputs =
@@ -23,6 +23,7 @@
       nixpkgs,
       typix,
       flake-utils,
+      font-awesome,
       ...
     }:
     flake-utils.lib.eachDefaultSystem (
@@ -45,6 +46,7 @@
             # "${pkgs.roboto}/share/fonts/truetype"
             "${pkgs.nerd-fonts.jetbrains-mono}"
             "${pkgs.nerd-fonts.space-mono}"
+            "${font-awesome}/otfs"
           ];
 
           virtualPaths = [
