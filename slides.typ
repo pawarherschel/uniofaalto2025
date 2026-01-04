@@ -107,6 +107,45 @@
       show: align.with(left)
       self
     }),
+    // Taken from the metropolis theme itself
+    new-section-slide-fn: (
+      config: (:),
+      level: 1,
+      numbered: true,
+      body,
+    ) => touying-slide-wrapper(self => {
+      let slide-body = {
+        // set std.align(horizon)
+        show: pad.with(20%)
+        set text(size: 1.5em)
+        stack(
+          dir: ttb,
+          spacing: 1em,
+          text(self.colors.neutral-darkest, utils.display-current-heading(
+            level: level,
+            numbered: numbered,
+            style: auto,
+          )),
+          block(
+            height: 2pt,
+            width: 100%,
+            spacing: 0pt,
+            components.progress-bar(
+              height: 2pt,
+              self.colors.primary,
+              self.colors.primary-light,
+            ),
+          ),
+        )
+        text(self.colors.neutral-dark, body)
+      }
+      self = utils.merge-dicts(
+        self,
+        config-page(fill: self.colors.neutral-lightest),
+      )
+      touying-slide(self: self, config: config, slide-body)
+    }),
+
     // show-notes-on-second-screen: right,
   ),
   config-page(numbering: n => if n < 10 { "0" + str(n) } else { str(n) }),
@@ -239,10 +278,10 @@
             width: 1fr,
             align(left)[
               = Context
-              - This presentation was made for University of Aalto
+              - This presentation was made for Aalto University
               - Text #link("https://sakurakat.systems")[styled like this] are links.
-              - Acknowledgements at the end of the presentation
-              - List of tables, images, and links are in #link(label("appendix"))[Appendix] at the end
+              - Acknowledgements are at the end of the presentation
+              - The list of tables, images, and links is in the #link(label("appendix"))[Appendix] at the end
                 - Slides are available for download at #link(github-blob-to-raw("https://github.com/pawarherschel/uniofaalto2025/blob/main/script.pdf"))
             ],
           )
@@ -321,12 +360,17 @@
 
     align(bottom, text(size: 1em, {
       par(justify: true, linebreaks: "optimized", text(size: 0.9em)[
-        Everything you see in this video --- scripts, links, and images --- are a part of a Typst document available freely on GitHub under a public domain licence.
+        Everything you see in this video - scripts, links, and images - is part
+        of a Typst document available freely on GitHub under a public domain licence.
       ])
       context {
         let t = github-card(
           "pawarherschel/uniofaalto2025",
-          paged-content: [GitHub:pawarherschel#linebreak()/uniofaalto2025],
+          paged-content: [
+            GitHub:pawarherschel
+            #linebreak()
+            /uniofaalto2025
+          ],
         )
         let height = measure(t).height
 
@@ -340,7 +384,7 @@
         box(t)
         h(1fr)
         box(
-          [Attributions available at #linebreak()#link(github-blob-to-raw("https://github.com/pawarherschel/uniofaalto2025/blob/main/assets/attributions.toml"))[assets/attributions.toml]],
+          [Attributions are in #linebreak()#link(github-blob-to-raw("https://github.com/pawarherschel/uniofaalto2025/blob/main/assets/attributions.toml"))[assets/attributions.toml]],
           height: height,
         )
       }
@@ -392,7 +436,7 @@
 
 == Theme
 #center-item-with-subtext(quote[Chain Reaction])[
-  Turn the tides, convert the bullet hell into bullet heaven by parrying the enemies' projectiles!
+  Turn the tides - convert the bullet hell into bullet heaven by parrying the enemies' projectiles!
 ]
 == Solo Developer
 #center-item-with-subtext(
@@ -420,7 +464,7 @@
   align(center, block(align(left)[
     - First time using Bevy (an ECS in Rust)
     - Created an online leaderboard
-      - Using Cloudflare worker and Cloudflare KV
+      - Using a Cloudflare Worker and Cloudflare KV
   ])),
 )
 
@@ -498,7 +542,7 @@
     c: "Preview image for the game \"Your Own Size\" as seen on itch.io",
   ),
 )[
-  - Minor Role as Tech Artist and Coordinator
+  - Minor role as Tech Artist and Coordinator
     - Wrote my first shader :D
 ]
 == Showcase
@@ -552,9 +596,26 @@
 )
 
 == Solution
-#f(
-  "your-own-size/anim.gif",
-  c: "gif of the game which shows the background blurring and unblurring",
+#grid(
+  columns: 2,
+  column-gutter: 2%,
+  {
+    $
+      "blur_level"_t & = cases(
+                         min("blur_level"_(t-1) + Delta_"time", 3.0) & "if" "Moving",
+                         max("blur_level"_(t-1) - Delta_"time", 0.0) & "if" "Idle"
+                       ) \
+      "COLOR"."rgba" & = "textureLod"( \
+                     & "screen_texture", \
+                     & "SCREEN_UV", \
+                     & "blur_level"_t \
+                   )
+    $
+  },
+  f(
+    "your-own-size/anim.gif",
+    c: "GIF of the game showing the background blurring and unblurring",
+  ),
 )
 
 == Result
@@ -616,14 +677,14 @@
 
 == Theme
 #center-item-with-subtext(
-  multiplier: 2.3,
+  multiplier: 2.2,
   columns(2, {
-    quote[Continous Change]
+    quote[Continuous Change]
     colbreak()
     quote[2D Platformer]
   }),
 )[
-  The main character of the game had latent powers which got activated one day when the elemental golems got activated. To gain control over their power, the player needs to defeat the golems.
+  The main character has latent powers that awaken one day when the elemental golems activated. To gain control over their power, the player needs to defeat the golems.
 ]
 == Lead Developer
 #grid(
@@ -631,7 +692,7 @@
   column-gutter: 2%,
   f(
     "fractured-elements.png",
-    c: "Logo for the game \"Fractured Elements\" which shows the two active elements of the player.",
+    c: "Logo for the game \"Fractured Elements\" showing the two active elements of the player.",
     height: 1fr,
   ),
   f("shashank-and-me.jpg", c: "Photo of Shashank and me", height: 1fr),
@@ -661,7 +722,13 @@
 )[
   Ranked from *5 ratings*. Score is adjusted from raw score by the median number of ratings per game in the jam.
   #line(length: 100%, stroke: alert-secondary-color)
-  *Visually nice* platformer game with a pixel art approach and *switching characters that allow either melee or ranged attacks*. *Multiple levels* make it interesting and force the player to master their jumping and attacking skills. There is a final boss for the finale. One improvement I would suggest is that I was *unsure what caused me to change* between the characters - I was not sure if it was timed, depending on where I was in the level or a button press. Well done to all involved in the game and the hard work you put into it!
+  *Visually nice* platformer game with a pixel art approach and *switching
+  characters* that allow either melee or ranged attacks. Multiple levels make it
+  interesting and force the player to master their jumping and attacking skills.
+  There is a final boss for the finale. One improvement I would suggest is that I
+  was *unsure what caused me to change between the characters* - I was not sure if
+  it was timed, depending on where I was in the level or a button press. Well done
+  to all involved in the game and the hard work you put into it!
 ]
 
 = Cosmos Conquerors (Godot)
@@ -708,7 +775,7 @@
 
 = Krita Palette Creator (Rust)
 #alert[
-  I had a reccuring problem
+  I had a recurring problem
 
   I solved the problem
 ]
@@ -716,7 +783,7 @@
 == Rosetta Code
 #block(height: 1fr, {
   columns(2, {
-    f("kpc/2.png", c: "The original full quality image taken in VRChat")
+    f("kpc/2.png", c: "The original full-quality image taken in VRChat")
     colbreak()
     f("kpc/2.png.5.png", c: "Quantized output of the image")
   })
@@ -751,13 +818,16 @@
             .map(it => it.to-hex())
             .map(it => rotate(-45deg, it, reflow: true, origin: left + horizon))
             .map(it => move(it, dx: 75%)),
-          ..rgbs.map(it => rect(fill: it, stroke: 1pt + white)),
+          ..rgbs.map(it => rect(
+            fill: it,
+            stroke: 1pt + theme.colors.red.rgb,
+          )),
         ),
         dx: -10pt,
       )
     },
     fp: file-path,
-    c: "quantized colors produced by the program ("
+    c: "Quantized colors produced by the program ("
       + str(rgbs.len())
       + " (2^"
       + str(calc.log(rgbs.len(), base: 2))
@@ -766,7 +836,7 @@
 })
 
 
-= Acknowledgement
+= Acknowledgements
 #alert[Never alone]
 
 == Heavily Inspired by
@@ -775,13 +845,13 @@
 )[
   #hide[meow]
 ][
-  === Overal Vibe
+  === Overall Vibe
   - / #link(
         "https://www.youtube.com/@Acerola_t",
-      )[Acerola]: for the general vibes of the presentation
+      )[Acerola]: general vibes
   - / #link(
         "https://www.youtube.com/@NoBoilerplate",
-      )[No Boilerplate]: the introduction and other general vibes
+      )[No Boilerplate]: fast paced style that requires you to read and listen
 ][
   === Creative Inspirations
   - / #link(
@@ -794,14 +864,14 @@
   === Made with #text(fill: theme.colors.lavender.rgb, font: emoji-font, emoji.heart.purple) using
   - / #link(
         "https://typst.app/",
-      )[Typst]: An an alternative to LaTeX written in Rust
-  - / #link("https://kdenlive.org/")[kdenlive]: Video Editor
-  - / #link("https://www.audacityteam.org/")[Audacity]: Audio Editor
+      )[Typst]: An alternative to LaTeX written in Rust
+  - / #link("https://kdenlive.org/")[kdenlive]: Video editor
+  - / #link("https://www.audacityteam.org/")[Audacity]: Audio editor
   - / #link("https://touying-typ.github.io/")[Touying]: Slides framework
     - / Metropolis: Slides theme
     - / #link(
           "https://github.com/touying-typ/touying-exporter",
-        )[Touying Expoter]: Exporting slides to html
+        )[Touying Exporter]: Exporting slides to HTML
   - / #link("https://github.com/catppuccin/typst")[Catppuccin]: The colors :3
 ][
   === Fonts
