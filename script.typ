@@ -151,20 +151,20 @@ script target (in seconds): #script-target (#format-time(script-target))
   Heya,
 ]
 #next-slide[Who am I?][
-  my name is Herschel Pravin Pawar,
+  My name is Herschel Pravin Pawar,
 
-  I also go by kat in some circles.
+  I also go by Kat in some circles.
 
-  This video has been recorded as part of my
+  This video was recorded as part of my
 
   Aalto application.
 
   #breath
 ]
 #next-slide[Parrylord (Bevy)][
-  Last year I set out to learn Bevy.
+  Last year I set out to learn Bevy,
 
-  An ECS based game engine
+  an ECS-based game engine
 
   written in Rust.
 ]
@@ -173,13 +173,13 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   So,
 
-  the player damage,
+  the player’s damage,
 
   projectiles,
 
   and score
 
-  increases with
+  increase with
 
   the number of projectiles
 
@@ -188,36 +188,36 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Solo Developer][
   After learning the basics,
 
-  I decided to participate in Bevy Jam 6.
+  I participated in Bevy Jam 6.
 
   I also made an online leaderboard for the game.
 ]
 #next-slide[Result][
   I placed
 
-  sixty first
+  sixty-first
 
   out of
 
-  ninety eight.
+  ninety-eight.
 ]
 #next-slide[Your Own Size (Godot)][
   This year
 
   I got an itch
 
-  to do pixel art again.
+  to do pixel art again
 
-  And participated as pixel artist
+  and participated as a pixel artist
 
-  for GameDev.tv Game Jam 2025.
+  for the GameDev.tv Game Jam 2025.
 ]
 #next-slide[Theme][
   We wanted to
 
   incorporate the theme
 
-  via aesthetics
+  through aesthetics
 
   and story.
 ]
@@ -237,9 +237,9 @@ script target (in seconds): #script-target (#format-time(script-target))
   than me.
 ]
 #next-slide[Showcase][
-  My biggest contribution was
+  My biggest contribution was a
 
-  three by three
+  three-by-three
 
   minimal
 
@@ -250,18 +250,18 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[The problem][
   Cosmical One,
 
-  my teammate
+  my teammate,
 
-  drew very beautiful backgrounds.
+  drew beautiful backgrounds,
 
-  But they made it difficult
+  but they made it hard
 
   to see the platforms
 
   and enemies.
 ]
 #next-slide[Solution][
-  I wanted the players
+  I wanted players
 
   to appreciate the backgrounds.
 
@@ -274,31 +274,31 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Result][
   We placed
 
-  seventy eighth
+  seventy-eighth
 
   out of
 
   one thousand and ten.
 ]
 #next-slide[Coventry University Summer School][
-  Until last year
+  Until last year,
 
   I was unsure about game dev.
 
-  I didn't know any game devs irl
+  I didn’t know any game devs IRL,
 
-  so when one of my friends'
+  so when one of my friends
 
   told me about a summer school program,
 
-  and I participated in it.
+  I joined.
 ]
 #next-slide[Result][
-  I met a lot of people there
+  I met a lot of people there,
 
-  talked to a lot of people
+  talked to a lot of people,
 
-  especially from games industry
+  especially from the games industry,
 
   and concluded that
 
@@ -318,20 +318,20 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   into the lore,
 
-  which gets reflected into the game
+  which was reflected in the game
 
-  as game mechanic.
+  as a mechanic.
 ]
 #next-slide[Lead Developer][
-  My partner had been programming for less than me.
+  My partner had been programming for less time than me,
 
-  But he plays
+  but he plays
 
-  dungeons and dragons
+  Dungeons & Dragons
 
-  and acts as the dungeon master.
+  and acts as the dungeon master,
 
-  So he was way better at
+  so he was better at
 
   lore building,
 
@@ -353,7 +353,7 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   I made with Godot
 
-  which was not just
+  that was not just
 
   a proof of concept.
 ]
@@ -362,19 +362,19 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   that I enjoy game dev
 
-  even if i'm bad at ideas
+  even if I’m bad at ideas.
 ]
 #next-slide[Solo Developer][
-  I enjoy the process of making games
+  I enjoy the process of making games.
 ]
 #next-slide[Result][
   I placed
 
-  four thousand six hundread and twelfth
+  four thousand six hundred twelfth
 
   out of
 
-  six thousand seven hundread and third.
+  six thousand seven hundred third.
 ]
 #next-slide[Krita Palette Creator (Rust)][
   I tend to only
@@ -385,25 +385,25 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   So when I wanted
 
-  to extract color palette
+  to extract a color palette
 
   from an image,
 
   and existing tools were annoying,
 
-  I decided to make the tool myself.
+  I made the tool myself.
 ]
 #next-slide[Rosetta Code][
-  I first checked Rosetta Code.
+  I first checked Rosetta Code,
 
-  But they didn't have the median cut algorithm.
+  but they didn’t have the median-cut algorithm,
 
-  So i contributed that as well.
+  so I contributed that as well.
 ]
 #next-slide[Acknowledgement][
   I know I stand
 
-  on the shoulder of
+  on the shoulders of
 
   giants.
 ]
@@ -416,20 +416,20 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   possible
 
-  without the generations of
+  without generations of
 
   people who came
 
   before me.
 ]
 #next-slide[Important Links][
-  There's so many people
+  There are so many people
 
-  who influenced me
+  who influenced me,
 
-  but I don't remember.
+  but I don’t remember.
 
-  But I do hope
+  I hope
 
   one day someone will look
 
