@@ -1,0 +1,17 @@
+# License
+This repository is dual-licensed to allow code reuse while protecting personal creative works.
+
+## Code: MIT License
+All source code in this repository, is available under the [MIT License](LICENSE).
+
+You are free to fork, modify, and use the underlying technical structure for
+your own presentations or projects.
+
+## Assets: CC BY-ND 4.0
+The creative content, is licensed under [CC BY-ND
+4.0](https://creativecommons.org/licenses/by-nd/4.0/).
+
+## ⚖️ Third-Party Attributions
+Some assets used in this project (fonts, icons, game jam team assets) belong to
+their respective authors. A full list of credits and licenses can be found in
+[`assets/attributions.toml`](assets/attributions.toml).

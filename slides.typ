@@ -1,3 +1,12 @@
+// =============================================================================
+//  Script & Slide Content License: CC BY-ND 4.0
+//  Copyright (c) 2025 Herschel Pravin Pawar
+//
+//  The text, script, and personal assets in this file are licensed under the
+//  Creative Commons Attribution-NoDerivatives 4.0 International License.
+//  You may share this work, but you cannot modify it.
+// =============================================================================
+
 #import "utils.typ": *
 
 #import "@preview/touying:0.6.1": *
@@ -360,8 +369,10 @@
 
     align(bottom, text(size: 1em, {
       par(justify: true, linebreaks: "optimized", text(size: 0.9em)[
-        Everything you see in this video - scripts, links, and images - is part
-        of a Typst document available freely on GitHub under a public domain licence.
+        Everything you see in this video - scripts, links, and images - is
+        part of a Typst document available freely on GitHub. The code is MIT licensed.
+        The assets and script text are under CC BY-ND 4.0. You are free to share this
+        presentation, but please do not modify the script or the assets.
       ])
       context {
         let t = github-card(
