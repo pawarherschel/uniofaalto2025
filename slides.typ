@@ -780,7 +780,7 @@
       )[Acerola]: for the general vibes of the presentation
   - / #link(
         "https://www.youtube.com/@NoBoilerplate",
-      )[No Boilerplate]: the introduction
+      )[No Boilerplate]: the introduction and other general vibes
 ][
   === Creative Inspirations
   - / #link(
