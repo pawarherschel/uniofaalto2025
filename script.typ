@@ -153,13 +153,11 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Who am I?][
   My name is Herschel Pravin Pawar,
 
-  I also go by Kat in some circles.
+  I also go by Kat.
 
   This video was recorded as part of my
 
   Aalto application.
-
-  #breath
 ]
 #next-slide[Parrylord (Bevy)][
   Last year I set out to learn Bevy,
@@ -195,7 +193,7 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Result][
   I placed
 
-  sixty-first
+  sixtyth
 
   out of
 
@@ -213,9 +211,9 @@ script target (in seconds): #script-target (#format-time(script-target))
   for the GameDev.tv Game Jam 2025.
 ]
 #next-slide[Theme][
-  We wanted to
+  We incorporated
 
-  incorporate the theme
+  the theme
 
   through aesthetics
 
@@ -263,7 +261,9 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Solution][
   I wanted players
 
-  to appreciate the backgrounds.
+  to appreciate the backgrounds
+
+  without losing the gameplay.
 
   So,
 
@@ -274,7 +274,7 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Result][
   We placed
 
-  seventy-eighth
+  twenty-fourth
 
   out of
 
@@ -291,7 +291,9 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   told me about a summer school program,
 
-  I joined.
+  I took the
+
+  opportunity.
 ]
 #next-slide[Result][
   I met a lot of people there,
@@ -312,7 +314,7 @@ script target (in seconds): #script-target (#format-time(script-target))
   a game jam.
 ]
 #next-slide[Theme][
-  We wanted to incorporate
+  We incorporated
 
   the theme
 
@@ -370,26 +372,30 @@ script target (in seconds): #script-target (#format-time(script-target))
 #next-slide[Result][
   I placed
 
-  four thousand six hundred twelfth
+  four thousand
+
+  six hundred
+
+  fifty second
 
   out of
 
   six thousand seven hundred third.
 ]
 #next-slide[Krita Palette Creator (Rust)][
-  I tend to only
+  I tend to
 
-  write code and build
+  write program
 
-  when I have a problem.
+  for problems I have.
 
   So when I wanted
 
   to extract a color palette
 
-  from an image,
+  from an image.
 
-  and existing tools were annoying,
+  The existing tools were annoying,
 
   I made the tool myself.
 ]
@@ -398,7 +404,9 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   but they didn’t have the median-cut algorithm,
 
-  so I contributed that as well.
+  so I contributed
+
+  the rust code.
 ]
 #next-slide[Acknowledgement][
   I know I stand
