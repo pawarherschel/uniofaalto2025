@@ -47,6 +47,68 @@
   date: document-date,
 )
 
+#pdf.attach(
+  "slides.typ",
+  relationship: "source",
+  description: "Source code for the slides",
+)
+#pdf.attach(
+  "script.typ",
+  relationship: "source",
+  description: "Source code for the script for the video",
+)
+#pdf.attach(
+  "utils.typ",
+  relationship: "source",
+  description: "Source code for the current state of my std library",
+)
+#pdf.attach(
+  "flake.nix",
+  relationship: "source",
+  description: "Source code for the nix flake",
+)
+#pdf.attach(
+  "flake.lock",
+  relationship: "source",
+  description: "lockfile for the nix flake",
+)
+#pdf.attach(
+  "export.sh",
+  relationship: "source",
+  description: "build script for the exported files",
+)
+#pdf.attach(
+  "touying-export.sh",
+  relationship: "source",
+  description: "build script for the exported presentation",
+)
+#pdf.attach(
+  "README.md",
+  relationship: "supplement",
+  description: "readme for the respository",
+)
+#pdf.attach(
+  "LICENSE",
+  relationship: "supplement",
+  description: "MIT license for the respository",
+)
+#pdf.attach(
+  "assets/LICENSE",
+  relationship: "supplement",
+  description: "CC BY-ND 4.0 license for the assets and text content",
+)
+#pdf.attach(
+  "assets/attributions.toml",
+  relationship: "supplement",
+  description: "attributions for the images used",
+)
+
+#pdf.attach(
+  "script.pdf",
+  relationship: "supplement",
+  description: "the compiled script as a pdf",
+)
+
 #let creative-font = "SpaceMono Nerd Font Propo"
 #let emoji-font = "Noto Color Emoji"
 
@@ -160,10 +222,12 @@
   config-page(numbering: n => if n < 10 { "0" + str(n) } else { str(n) }),
 )
 
-#show heading.where(depth: 1): set heading(numbering: (..n) => "=" * 1)
-#show heading.where(depth: 2): set heading(numbering: (..n) => "=" * 2)
-#show heading.where(depth: 3): set heading(numbering: (..n) => "=" * 3)
-#show heading.where(depth: 4): set heading(numbering: (..n) => "=" * 4)
+#show heading: it => {
+  grid(
+    columns: 2,
+    box(text("=" * it.level + " ")), box(it),
+  )
+}
 
 #show list: set list(marker: [-])
 
@@ -236,9 +300,25 @@
   }
 }
 
-#let f(path, root: "assets", ..args, c: none, fp: none) = {
+#let attachments = state("kat--f-fp", ())
+
+#let f(
+  path,
+  root: "assets",
+  ..args,
+  c: none,
+  fp: none,
+  show-c: true,
+  relationship: "data",
+) = {
   if fp == none {
     fp = root + "/" + path
+  }
+
+  if c == none {
+    panic(
+      "Add caption for accessibility, if you don't want to convert whatever you passed as a figure, set show-c parameter to false",
+    )
   }
 
   let inner = if type(path) == type("string") {
@@ -252,9 +332,14 @@
   } else {
     path
   }
-  if c != none {
+  if c != none and show-c {
     figure(inner, caption: [#c #filepath(fp)])
   } else { inner }
+
+  context if not attachments.get().contains(fp) {
+    pdf.attach(fp, relationship: relationship, description: c)
+    attachments.update(it => it + (fp,))
+  }
 }
 
 
@@ -365,7 +450,13 @@
       grid(
         columns: 2,
         column-gutter: 2%,
-        f("kibty.svg", height: height), t,
+        f(
+          "kibty.svg",
+          height: height,
+          c: "Favicon for my website, made by combining the cat emoji and cherry blossom emoji. The cat is nomming the cherry blossom.",
+          show-c: false,
+        ),
+        t,
       )
     })
 
@@ -391,7 +482,12 @@
         box(
           link(
             "https://creativecommons.org/licenses/by-nd/4.0/",
-            f("cc.logo.svg", height: height),
+            f(
+              "cc.logo.svg",
+              height: height,
+              show-c: false,
+              c: "Logo for the CC BY-ND 4.0 license",
+            ),
           ),
         )
         h(1fr)
@@ -565,28 +661,84 @@
   outset: 1em,
   masonry(
     (
-      ccw(f("your-own-size/cracked-wood-tileset.png")),
+      ccw(f(
+        "your-own-size/cracked-wood-tileset.png",
+        show-c: false,
+        c: "Tileset for the platforms of the game \"Your Own Size\"",
+      )),
     ),
     (
-      f("your-own-size/branch_fall.gif"),
-      f("your-own-size/heart.gif"),
-      f("your-own-size/kibby.gif"),
+      f(
+        "your-own-size/branch_fall.gif",
+        show-c: false,
+        c: "Pixel art of a branch falling from the top",
+      ),
+      f(
+        "your-own-size/heart.gif",
+        show-c: false,
+        c: "Pixel art GIF of a spinning, shiny heart",
+      ),
+      f(
+        "your-own-size/kibby.gif",
+        show-c: false,
+        c: "Pixel art GIF of a black cat token",
+      ),
     ),
     (
-      f("your-own-size/nerd_room.png"),
-      f("your-own-size/nerd_room_background.png"),
+      f(
+        "your-own-size/nerd_room.png",
+        show-c: false,
+        c: "Orthographic-ish view of a room in a treehouse. Lots of big, thick wires go in and out of the room. There's a whiteboard with science-y things on it. Beside the whiteboard, on the wall, there's a poster of Dr. Doof titled 'My Idol'. In front of the poster, there's a big, low table with a CRT, keyboard, mouse, shrink ray, and Raspberry Pi. The room has a red bed.",
+      ),
+      f(
+        "your-own-size/nerd_room_background.png",
+        show-c: false,
+        c: "Front view of a room in a treehouse. Lots of big, thick wires go in and out of the room. There's a whiteboard with science-y things on it. Beside the whiteboard, on the wall, there's a poster of Dr. Doof titled 'My Idol'. In front of the poster, there's a big, low table with a CRT, keyboard, mouse, shrink ray, and Raspberry Pi. The room has a red bed.",
+      ),
     ),
     (
-      f("your-own-size/water_drop.gif"),
-      f("your-own-size/venus_flytrap.gif"),
-      f("your-own-size/worm_crawl.gif"),
-      f("your-own-size/worm_death.gif"),
+      f(
+        "your-own-size/water_drop.gif",
+        show-c: false,
+        c: "Pixel art GIF of a droplet of water falling from ceiling",
+      ),
+      f(
+        "your-own-size/venus_flytrap.gif",
+        show-c: false,
+        c: "Pixel art GIF of a big venus flytrap on the ground chomping",
+      ),
+      f(
+        "your-own-size/worm_crawl.gif",
+        show-c: false,
+        c: "Pixel art GIF of a cute pink worm crawling",
+      ),
+      f(
+        "your-own-size/worm_death.gif",
+        show-c: false,
+        c: "Pixel art GIF of a cute pink worm that gets squashed, light from the eye comes out and explodes.",
+      ),
     ),
     (
-      f("your-own-size/mosquito_attack.gif"),
-      f("your-own-size/mosquito_death.gif"),
-      f("your-own-size/mosquito.gif"),
-      f("your-own-size/mosquito_idle.gif"),
+      f(
+        "your-own-size/mosquito.gif",
+        show-c: false,
+        c: "Pixel art GIF of a mosquito flapping its wings",
+      ),
+      f(
+        "your-own-size/mosquito_idle.gif",
+        show-c: false,
+        c: "Pixel art GIF of a mosquito with a spinner on its head, implying it's idle (no thoughts, head empty)",
+      ),
+      f(
+        "your-own-size/mosquito_attack.gif",
+        show-c: false,
+        c: "Pixel art GIF of a mosquito with an exclamation mark on its head that gradually fills up before the it goes into attack mode",
+      ),
+      f(
+        "your-own-size/mosquito_death.gif",
+        show-c: false,
+        c: "Pixel art GIF of a dying mosquito where the exclamation mark or the idle spinner turning into an X and covers its eyes",
+      ),
     ),
   ),
 )
@@ -594,19 +746,43 @@
 == The problem
 #place(
   top + center,
-  f("your-own-size/02_sky.png"),
+  f(
+    "your-own-size/01_sky.png",
+    show-c: false,
+    c: "Part of a tall view of pixel art scenery. This part shows the faraway sky",
+  ),
 )
 #place(
   top + center,
-  f("your-own-size/03_sky.png"),
+  f(
+    "your-own-size/02_sky.png",
+    show-c: false,
+    c: "Part of a tall view of pixel art scenery. This part shows the sky transitioning to space",
+  ),
 )
 #place(
   top + center,
-  f("your-own-size/04_sky.png"),
+  f(
+    "your-own-size/03_sky.png",
+    show-c: false,
+    c: "Part of a tall view of pixel art scenery. This part shows far mountains",
+  ),
 )
 #place(
   top + center,
-  f("your-own-size/05_sky.png"),
+  f(
+    "your-own-size/04_sky.png",
+    show-c: false,
+    c: "Part of a tall view of pixel art scenery. This part shows a town transitioning to the mountains",
+  ),
+)
+#place(
+  top + center,
+  f(
+    "your-own-size/05_sky.png",
+    show-c: false,
+    c: "part of a tall view of pixel art scenery. This part shows the town",
+  ),
 )
 
 == Solution
@@ -614,17 +790,23 @@
   columns: 2,
   column-gutter: 2%,
   {
-    $
-      "blur_level"_t & = cases(
-                         min("blur_level"_(t-1) + Delta_"time", 3.0) & "if" "Moving",
-                         max("blur_level"_(t-1) - Delta_"time", 0.0) & "if" "Idle"
-                       ) \
-      "COLOR"."rgba" & = "textureLod"( \
-                     & "screen_texture", \
-                     & "SCREEN_UV", \
-                     & "blur_level"_t \
-                   )
-    $
+    math.equation(
+      alt: "There are two equations, first one represents the blur level at time t, the second one represents the color that the blur level produces in the fragment shader.
+Blur level at time t depends on if the player has moved or not.
+If the player moves, it gradually increases over 3 seconds, otherwise it gradually decreases.
+The color produced is generated by sampling the screen at the current level as level of detail.",
+      $
+        "blur_level"_t & = cases(
+                           min("blur_level"_(t-1) + Delta_"time", 3.0) & "if" "Moving",
+                           max("blur_level"_(t-1) - Delta_"time", 0.0) & "if" "Idle"
+                         ) \
+        "COLOR"."rgba" & = "textureLod"( \
+                       & "screen_texture", \
+                       & "SCREEN_UV", \
+                       & "blur_level"_t \
+                     )
+      $,
+    )
   },
   f(
     "your-own-size/anim.gif",
@@ -706,7 +888,7 @@
   column-gutter: 2%,
   f(
     "fractured-elements.png",
-    c: "Logo for the game \"Fractured Elements\" showing the two active elements of the player.",
+    c: "Logo for the game \"Fractured Elements\" showing the two active elements of the player",
     height: 1fr,
   ),
   f("shashank-and-me.jpg", c: "Photo of Shashank and me", height: 1fr),

@@ -1,5 +1,17 @@
 #import "@preview/wordometer:0.1.5": word-count
 
+#let (document-title, document-author, document-date) = (
+  document-title: "Introduction Video",
+  document-author: "Herschel Pravin Pawar",
+  document-date: datetime.today(),
+)
+
+#set document(
+  title: document-title,
+  author: document-author,
+  date: document-date,
+)
+
 /*
 = Introduction video
 
