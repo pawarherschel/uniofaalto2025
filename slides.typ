@@ -292,6 +292,9 @@
               - Acknowledgements are at the end of the presentation
               - The list of tables, images, and links is in the #link(label("appendix"))[Appendix] at the end
                 - Slides are available for download at #link(github-blob-to-raw("https://github.com/pawarherschel/uniofaalto2025/blob/main/script.pdf"))
+              - The code is licensed under MIT
+              - The script, and assets are licensed under CC BY-NC 4.0
+              - Attributions are in "assets/attributions.toml"
             ],
           )
         },
