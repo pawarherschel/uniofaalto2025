@@ -283,7 +283,7 @@
         {
           speaker-note[meow]
           box(
-            inset: (top: 3em),
+            inset: (top: 1em),
             width: 1fr,
             align(left)[
               = Context
