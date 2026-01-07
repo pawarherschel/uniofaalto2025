@@ -236,7 +236,9 @@ script target (in seconds): #script-target (#format-time(script-target))
 
   had one more person.
 
-  My teammate
+  Cosmical one,
+
+  Who
 
   was more
 
@@ -293,10 +295,6 @@ script target (in seconds): #script-target (#format-time(script-target))
   one thousand and ten.
 ]
 #next-slide[Coventry University Summer School][
-  Until last year,
-
-  I was unsure about game dev.
-
   I didn’t know any game devs IRL,
 
   so when one of my friends
@@ -308,11 +306,7 @@ script target (in seconds): #script-target (#format-time(script-target))
   opportunity.
 ]
 #next-slide[Result][
-  I met a lot of people there,
-
-  talked to a lot of people,
-
-  especially from the games industry,
+  I met and talked to a lot of people
 
   and concluded that
 
@@ -395,21 +389,11 @@ script target (in seconds): #script-target (#format-time(script-target))
   six thousand seven hundred third.
 ]
 #next-slide[Krita Palette Creator (Rust)][
-  I tend to
-
-  write program
-
-  for problems I have.
-
-  So when I wanted
+  I wanted a simple way
 
   to extract a color palette
 
   from an image.
-
-  The existing tools were annoying,
-
-  I made the tool myself.
 ]
 #next-slide[Rosetta Code][
   I first checked Rosetta Code,
@@ -443,17 +427,9 @@ script target (in seconds): #script-target (#format-time(script-target))
   before me.
 ]
 #next-slide[Important Links][
-  There are so many people
+  I hope to influence others
 
-  who influenced me,
-
-  but I don’t remember.
-
-  I hope
-
-  one day someone will look
-
-  at my work and be influenced.
+  like how others influenced me.
 ]
 
 #pagebreak(weak: true)
